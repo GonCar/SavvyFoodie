@@ -46,28 +46,16 @@ class UserTest {
 
 
     @Test
-    void getUser_name() {
-        User c = new User("My", "", "", 0);
-        assertEquals("My", c.getUser_name());
+    void User(){
+        User users = new User("user1","private", "Password", 0);
+        assertAll("UserRegistration",
+            ()-> assertEquals("user1", users.getUser_name()),
+            ()-> assertEquals("private", users.getEntity()),
+            ()-> assertEquals("Password", users.getPassword()),
+            ()-> assertEquals(0, users.getPhone_number())
+
+        );
     }
 
-
-    @Test
-    void getEntity() {
-        User c = new User("", "private", "", 0);
-        assertEquals("private", c.getEntity(),"Error Entity Inputs"); //how about "business" in Entity?
-    }
-
-    @Test
-    void getPassword() {
-        User c = new User("", "", "abc123", 0);
-        assertEquals("abc123", c.getPassword());
-    }
-
-    @Test
-    void getPhone_number() {
-        User c = new User("", "", "", 0);
-        assertEquals(0, c.getPhone_number());
-    }
 
 }
