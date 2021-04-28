@@ -23,7 +23,7 @@ class UserTest {
 
     @BeforeEach
     void createUser(){
-        user = new User();
+        //user = new User();
         user.setUser_name(user_name);
         user.setEntity(entity);
         user.setPassword(password);
@@ -35,11 +35,11 @@ class UserTest {
     @DisplayName("Can display the correct inputs")
     void ShouldHaveCorrectInput(){
         assertAll("userRegi",
-                ()-assertEquals("user1", user.getUser_name()),
-                ()-assertEquals("private",  user.getEntity(),
-                ()-assertEquals("Password", user.getPassword()),
-                ()-assertEquals("1234567890", user.getPhone_number()
-            );
+                ()-> assertEquals("user1", user.getUser_name()),
+                ()-> assertEquals("private", user.getEntity()),
+                ()-> assertEquals("Password", user.getPassword()),
+                ()-> assertEquals("1234567890", user.getPhone_number())
+                );
 
     }
     
