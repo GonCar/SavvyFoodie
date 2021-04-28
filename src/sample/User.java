@@ -12,6 +12,7 @@ public class User {
     double account_amount = 0;
     double rating = 0;
 
+
     public User(String user_name, String entity, String password, int phone_number){
         this.user_name = user_name;
         this.entity = entity;
