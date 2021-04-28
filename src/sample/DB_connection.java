@@ -50,6 +50,8 @@ public class DB_connection {
         }
     }
 
+
+
     public void addProduct(String product_name, String category, boolean is_veggie, boolean is_gluten_free, int product_weight, int price, Date expiry_date)
     {
         try {
