@@ -66,7 +66,6 @@ public class DB_connection {
         }
     }
 
-
     public void deleteProduct(String productId)
     {
         try {
