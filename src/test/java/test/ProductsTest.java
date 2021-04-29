@@ -26,7 +26,7 @@ class ProductsTest {
     }
 
     @Test
-    void getExpiry_date(){
+    void getBoolean_isveggie(){
 
         Products test = new Products(0, "", "", true, true, 0, 0, "");
         Assertions.assertEquals( true, test.isIs_veggie());
