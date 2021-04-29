@@ -46,6 +46,7 @@ class UserTest {
 
 
     @Test
+    @DisplayName("Group multiple testing")
     void User(){
         User users = new User("user1","private", "Password", 0);
         assertAll("UserRegistration",
