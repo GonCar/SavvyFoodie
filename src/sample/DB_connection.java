@@ -68,11 +68,11 @@ public class DB_connection {
                 resultSet = ps.executeQuery();
                 while(resultSet.next()){
                     System.out.println(
-                            "\n" +    a +
-                                    ". Product Name: " + resultSet.getString(2)+
-                                    "\nQuantity in stock: " + resultSet.getInt(9)+
-                                    "\nPrice per kg: " + resultSet.getDouble(4)+
-                                    " USD\n-----------------------------");
+                         "\n" +    a +
+                         ". Product Name: " + resultSet.getString(2)+
+                         "\nQuantity in stock: " + resultSet.getInt(9)+
+                         "\nPrice per kg: " + resultSet.getDouble(4)+
+                         " USD\n-----------------------------");
                     a++;
                 }
             }
@@ -80,6 +80,37 @@ public class DB_connection {
             System.out.println("Error on executing statement!");
         }
     }
+
+    public void filter_by_city(String city) {
+        try{
+            ps = connection.prepareStatement("SELECT user_name, product_name, " +
+                    "product_catagory, price, product_weight , city FROM food_products" +
+                    " INNER JOIN users ON  food_products.Users_user_id = users.user_id" +
+                    " WHERE users.city = ?");
+            ps.setString(1, city);
+            resultSet = ps.executeQuery();
+            int a = 1;
+            if (!resultSet.next()){
+                System.out.println("\nNo products in " + city + " available!");
+            } else {
+                resultSet = ps.executeQuery();
+                while(resultSet.next()){
+                    System.out.println(
+                          "\n" +    a +
+                          ". Product Name: " + resultSet.getString(2)+
+                          "\nQuantity in stock: " + resultSet.getInt(5)+
+                          "\nPrice per kg: " + resultSet.getDouble(4)+ " USD" +
+                          "\nSeller : " + resultSet.getString(1)+
+                          "\nCity : " + resultSet.getString(6)+
+                          "\n-----------------------------");
+                    a++;
+                }
+            }
+        }catch(SQLException ex){
+            System.out.println("Error on executing statement!");
+        }
+    }
+
 
     public void showProducts() {
         try{
