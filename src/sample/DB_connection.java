@@ -1,9 +1,10 @@
 package sample;
 import java.sql.*;
 import java.util.Date;
+import java.util.List;
 
 public class DB_connection {
-    String url = "jdbc:mysql://127.0.0.1:3306/classicmodels?user=root&password=root";
+    String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=root";
     Connection connection;
     PreparedStatement ps;
     Statement statement;
@@ -29,9 +30,60 @@ public class DB_connection {
         }
     }
 
-    public void showProducts()
-    {
+    public void filter_by_price(int min_price, int max_price){
         try{
+            ps = connection.prepareStatement("SELECT * FROM food_products WHERE price >= ? AND price <= ?");
+            ps.setInt(1, min_price);
+            ps.setInt(2, max_price);
+            resultSet = ps.executeQuery();
+            int a = 1;
+            if (!resultSet.next()){
+                System.out.println("\nNo food items of that price range!");
+            } else {
+                resultSet = ps.executeQuery();
+                while(resultSet.next()){
+                    System.out.println(
+                            "\n" +    a +
+                                    ". Product Name: " + resultSet.getString(2)+
+                                    "\nQuantity in stock: " + resultSet.getInt(9)+
+                                    "\nPrice per kg: " + resultSet.getDouble(4)+
+                                    " USD\n-----------------------------");
+                    a++;
+                }
+            }
+        }catch(SQLException ex){
+            System.out.println("Error on executing statement!");
+        }
+    }
+
+    public void filter_by_category(String category) {
+        try{
+            ps = connection.prepareStatement("SELECT * FROM food_products WHERE product_catagory = ?");
+            ps.setString(1, category);
+            resultSet = ps.executeQuery();
+            int a = 1;
+            if (!resultSet.next()){
+                System.out.println("\nNo category" + category + " available!");
+            } else {
+                resultSet = ps.executeQuery();
+                while(resultSet.next()){
+                    System.out.println(
+                            "\n" +    a +
+                                    ". Product Name: " + resultSet.getString(2)+
+                                    "\nQuantity in stock: " + resultSet.getInt(9)+
+                                    "\nPrice per kg: " + resultSet.getDouble(4)+
+                                    " USD\n-----------------------------");
+                    a++;
+                }
+            }
+        }catch(SQLException ex){
+            System.out.println("Error on executing statement!");
+        }
+    }
+
+    public void showProducts() {
+        try{
+
             statement = connection.createStatement();
             resultSet = statement.executeQuery("Select * from products");
             rsmd = resultSet.getMetaData();
@@ -45,31 +97,26 @@ public class DB_connection {
             }
 
         }catch (SQLException exception){
-            System.out.println("Query failed to execute");
+            System.out.println("Query failed to execute!");
             exception.printStackTrace();
         }
     }
 
-
-
-    public void addProduct(String product_name, String category, boolean is_veggie, boolean is_gluten_free, int product_weight, int price, Date expiry_date)
-    {
+    public void addProduct(String product_name, String category, boolean is_veggie, boolean is_gluten_free, int product_weight, int price, Date expiry_date) {
         try {
 
             statement = connection.createStatement();
-            statement.executeUpdate("INSERT INTO products" + "VALUES (" + product_name +","+ category +"," + is_veggie +"," + is_gluten_free +"," + product_weight +","+ price+","+ expiry_date +")");
-
+            int veggie = (is_veggie)? 1 : 0;
+            int gluten = (is_gluten_free)? 1: 0;
+            statement.executeUpdate("INSERT INTO products" + "VALUES (" + product_name +","+ category +"," + veggie +"," + gluten +"," + product_weight +","+ price+","+ expiry_date +")");
         }catch (SQLException exception)
         {
-
-            System.out.println("Could not add product to database");
+            System.out.println("Could not add product to database!");
             exception.printStackTrace();
-
         }
     }
 
-    public void deleteProduct(String productId)
-    {
+    public void deleteProduct(String productId) {
         try {
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SET FOREIGN_KEY_CHECKS=0;");
