@@ -8,5 +8,6 @@ public class Main {
         //connection.filter_by_category("Fruit");
         connection.filter_by_city("Stockholm");
         //connection.showProducts();
+        connection.disconnect();
     }
 }
