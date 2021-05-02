@@ -56,6 +56,54 @@ public class DB_connection {
         }
     }
 
+    public void change_price(int product_id, int new_price){
+        try{
+            ps = connection.prepareStatement("SELECT * FROM food_products WHERE product_id=?");
+            ps.setInt(1, product_id);
+            resultSet = ps.executeQuery();
+            if (!resultSet.next()){
+                System.out.println("\nProduct not found!");
+            } else {
+                ps = connection.prepareStatement("UPDATE food_products SET price = ? WHERE product_id = ?");
+                ps.setInt(1, new_price);
+                ps.setInt(2, product_id);
+                ps.executeUpdate();
+                System.out.println("\nProduct price changed!");
+                System.out.println("---------------------------");
+                System.out.println(
+                        "Product : " + resultSet.getString(2)+
+                                ", " + resultSet.getString(3)+
+                                "\nOld price: " + resultSet.getString(4)+
+                                "\nNew price : " + new_price);
+            }
+        }catch(SQLException ex){
+            System.out.println("Error on executing statement!");
+        }
+    }
+    public void change_user_name(int user_id, String new_user_name){
+        try{
+            ps = connection.prepareStatement("SELECT * FROM users WHERE user_id=?");
+            ps.setInt(1, user_id);
+            resultSet = ps.executeQuery();
+            if (!resultSet.next()){
+                System.out.println("\nUser not found!");
+            } else {
+                ps = connection.prepareStatement("UPDATE users SET user_name = ? WHERE user_id = ?");
+                ps.setString(1, new_user_name);
+                ps.setInt(2, user_id);
+                ps.executeUpdate();
+                System.out.println("\nUser name changed!");
+                System.out.println("---------------------------");
+                System.out.println(
+                        "User ID : " + resultSet.getString(1)+
+                                "\nOld username: " + resultSet.getString(2)+
+                                "\nNew price : " + new_user_name);
+            }
+        }catch(SQLException ex){
+            System.out.println("Error on executing statement!");
+        }
+    }
+
     public void filter_by_category(String category) {
         try{
             ps = connection.prepareStatement("SELECT * FROM food_products WHERE product_catagory = ?");
