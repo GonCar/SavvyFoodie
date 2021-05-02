@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+
+<TableView fx:id="table_info" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+  <columns>
+    <TableColumn fx:id="col_name" prefWidth="94.0" text="name" />
+    <TableColumn fx:id="col_category" prefWidth="94.0" text="category" />
+      <TableColumn fx:id="col_weight" prefWidth="60.0" text="weight" />
+      <TableColumn fx:id="col_gluten" prefWidth="69.0" text="gluten free" />
+      <TableColumn fx:id="col_vegan" prefWidth="49.0" text="vegan" />
+      <TableColumn fx:id="col_price" prefWidth="68.0" text="price" />
+      <TableColumn fx:id="col_date" prefWidth="130.0" text="expiry date" />
+  </columns>
+</TableView>

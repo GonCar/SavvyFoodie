@@ -3,19 +3,34 @@ import java.sql.*;
 import java.util.Date;
 
 public class DB_connection {
-    String url = "jdbc:mysql://127.0.0.1:3306/classicmodels?user=root&password=root";
-    Connection connection;
+    //String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=GyroZeppeli";
+    //Connection connection;
     PreparedStatement ps;
     Statement statement;
     ResultSet resultSet;
     ResultSetMetaData rsmd;
-    public void connect() {
+    private static Connection connection;
+    private static String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=GyroZeppeli";
+
+    /*public void connect() {
         try{
             connection = DriverManager.getConnection(url);
         }
         catch (SQLException ex){
             System.out.println("connection failed!");
+            ex.printStackTrace();
         }
+    }*/
+
+    public static Connection connect (){
+        try {
+            connection = DriverManager.getConnection(url);
+        } catch (SQLException ex) {
+            System.out.println("connection failed!");
+            ex.printStackTrace();
+        }
+
+        return  connection;
     }
 
     public void disconnect() {
@@ -33,7 +48,7 @@ public class DB_connection {
     {
         try{
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("Select * from products");
+            resultSet = statement.executeQuery("Select * from food_products");
             rsmd = resultSet.getMetaData();
 
             int columnsNumber = rsmd.getColumnCount();
