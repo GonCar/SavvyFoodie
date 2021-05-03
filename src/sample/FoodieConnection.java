@@ -2,9 +2,7 @@ package sample;
 
 import Interface.IConnection;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class FoodieConnection implements IConnection {
 
@@ -19,5 +17,15 @@ public class FoodieConnection implements IConnection {
     @Override
     public void close() throws SQLException {
         this.connection.close();
+    }
+
+    @Override
+    public Statement createStatement() throws SQLException {
+        return this.connection.createStatement();
+    }
+
+    @Override
+    public PreparedStatement prepareStatement(String sql) throws SQLException {
+        return this.connection.prepareStatement(sql);
     }
 }
