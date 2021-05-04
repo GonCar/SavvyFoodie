@@ -217,7 +217,7 @@ public class DB_connection {
         }catch (SQLException exception)
         {
 
-            System.out.println("Product couldn't be deleted");
+            System.out.println("Product couldn't be deleted!");
             exception.printStackTrace();
 
         }

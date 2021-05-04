@@ -21,11 +21,11 @@ public class FakeFoodieConnection implements IConnection {
 
     @Override
     public Statement createStatement() throws SQLException {
-        return null;
+        throw new SQLException();
     }
 
     @Override
     public PreparedStatement prepareStatement(String sql) throws SQLException {
-        return null;
+        throw new SQLException();
     }
 }
