@@ -162,7 +162,6 @@ public class DB_connection {
 
     public void showProducts() {
         try{
-
             statement = connection.createStatement();
             resultSet = statement.executeQuery("Select * from products");
             rsmd = resultSet.getMetaData();
