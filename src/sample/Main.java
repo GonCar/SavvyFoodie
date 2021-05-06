@@ -1,30 +1,12 @@
 package sample;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
-public class Main extends Application {
-
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
-    }
-
-
+public class Main {
     public static void main(String[] args) {
-
-        launch(args);
-
-        DB_connection connection = new DB_connection();
+        DB_connection connection = new DB_connection(new FoodieConnection());
         connection.connect();
-        connection.showProducts();
-
-
+        //connection.filter_by_price( 10, 1000);
+        //connection.filter_by_category("Fruit");
+        connection.filter_by_city("Stockholm");
+        //connection.showProducts();
     }
 }
