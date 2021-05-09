@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="534.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.signUpController">
+   <children>
+      <Text layoutX="257.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+         <font>
+            <Font name="System Italic" size="20.0" />
+         </font>
+      </Text>
+      <TextField fx:id="userTextField" layoutX="220.0" layoutY="61.0" />
+      <Text layoutX="258.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+         <font>
+            <Font name="System Italic" size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="222.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password">
+         <font>
+            <Font name="System Italic" size="20.0" />
+         </font>
+      </Text>
+      <PasswordField fx:id="confirmPasswordTextField" layoutX="219.0" layoutY="384.0" />
+      <PasswordField fx:id="passwordTextField" layoutX="221.0" layoutY="292.0" />
+      <ComboBox fx:id="entityComboBox" layoutX="219.0" layoutY="139.0" prefHeight="27.0" prefWidth="161.0" />
+      <Text layoutX="276.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Entity">
+         <font>
+            <Font name="System Italic" size="20.0" />
+         </font>
+      </Text>
+      <Button fx:id="registerButton" layoutX="222.0" layoutY="446.0" mnemonicParsing="false" onAction="#RegisterButton" prefHeight="27.0" prefWidth="154.0" text="Register" />
+      <Button fx:id="returnButton" layoutX="222.0" layoutY="487.0" mnemonicParsing="false" onAction="#returnButtonOnAction" prefHeight="27.0" prefWidth="154.0" text="Return" />
+      <Label fx:id="warningLabel" layoutX="206.0" layoutY="417.0" textFill="RED">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Text layoutX="275.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+         <font>
+            <Font name="System Italic" size="20.0" />
+         </font>
+      </Text>
+      <TextField fx:id="emailTextField" layoutX="218.0" layoutY="217.0" />
+      <Label fx:id="invalidEmailLabel" layoutX="398.0" layoutY="218.0" textFill="RED">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="mismatchedPasswordLabel" layoutX="391.0" layoutY="293.0" textFill="RED">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="userExistsLabel" layoutX="222.0" layoutY="416.0" textFill="RED">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
