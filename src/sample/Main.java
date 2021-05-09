@@ -21,7 +21,7 @@ public class Main extends Application {
 
         launch(args);
 
-        DB_connection connection = new DB_connection();
+        DB_connection connection = new DB_connection(new FoodieConnection());
         connection.connect();
         connection.showProducts();
 

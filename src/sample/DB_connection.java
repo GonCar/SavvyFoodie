@@ -1,17 +1,25 @@
 package sample;
+import Interface.IConnection;
+import tests.FakeFoodieConnection;
+
 import java.sql.*;
 import java.util.Date;
 
 public class DB_connection {
     String url = "jdbc:mysql://127.0.0.1:3306/classicmodels?user=root&password=root";
-    Connection connection;
+    IConnection connection;
     PreparedStatement ps;
     Statement statement;
     ResultSet resultSet;
     ResultSetMetaData rsmd;
+
+    public DB_connection(IConnection connection) {
+        this.connection = connection;
+    }
+
     public void connect() {
         try{
-            connection = DriverManager.getConnection(url);
+            connection.getConnection(url);
         }
         catch (SQLException ex){
             System.out.println("connection failed!");
