@@ -24,7 +24,7 @@ class UserTest {
 
     @BeforeEach
     void createUser(){
-        User users = new User("user1", "", "", 0);
+        //User users = new User("user1", "", "", 0);
         //user.setUser_name("user1");
         //user.setEntity(entity);
         //user.setPassword(password);
@@ -42,7 +42,9 @@ class UserTest {
                 //()-> assertEquals("1234567890", user.getPhone_number())
                 );
 
-    }*/
+    }
+
+     */
 
 
     @Test
