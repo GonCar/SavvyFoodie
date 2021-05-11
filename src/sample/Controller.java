@@ -79,18 +79,16 @@ public class Controller implements Initializable {
             productsList.clear();
 
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("Select product_name, product_catagory, is_veggie, is_gluten_free, product_weight, price, expiary_left from food_products");
+            resultSet = statement.executeQuery("Select product_name, product_category, product_weight, price, expiry_date from food_products");
 
 
             while (resultSet.next()){
                 productsList.add(new Products(
                         resultSet.getString("product_name"),
-                        resultSet.getString("product_catagory"),
-                        resultSet.getBoolean("is_veggie"),
-                        resultSet.getBoolean("is_gluten_free"),
+                        resultSet.getString("product_category"),
                         resultSet.getInt("product_weight"),
-                        resultSet.getInt("price")));
-                //resultSet.getDate("expiary_left")));
+                        resultSet.getInt("price"),
+                        resultSet.getLong("expiry_date")));
                 table_info.setItems(productsList);
             }
 
@@ -113,10 +111,8 @@ public class Controller implements Initializable {
         col_name.setCellValueFactory(new PropertyValueFactory<>("product_name"));
         col_category.setCellValueFactory(new PropertyValueFactory<>("category"));
         col_weight.setCellValueFactory(new PropertyValueFactory<>("product_weight"));
-        col_gluten.setCellValueFactory(new PropertyValueFactory<>("is_gluten_free"));
-        col_vegan.setCellValueFactory(new PropertyValueFactory<>("is_veggie"));
         col_price.setCellValueFactory(new PropertyValueFactory<>("price"));
-        //col_date.setCellValueFactory(new PropertyValueFactory<>("expiry_date"));
+        col_date.setCellValueFactory(new PropertyValueFactory<>("expiry_date"));
 
         refreshTable();
 

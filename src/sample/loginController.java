@@ -106,6 +106,12 @@ public class loginController implements Initializable {
                 if(resultSet.getInt(1) == 1)
                 {
                     invalidLoginLabel.setText("You're in");
+
+//
+//                    ps = connection.prepareStatement("SELECT user_id FROM users WHERE user_name=?");
+//                    ps.setString(1, usernameTextField.getText());
+//                    resultSet = ps.executeQuery();
+//                   app_Logic.current_user_id = resultSet.getInt("user_id");
                     userExists = true;
 
                 }else

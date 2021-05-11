@@ -36,7 +36,7 @@ public class DB_connection {
     {
         try{
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("Select * from products");
+            resultSet = statement.executeQuery("Select * from food_products");
             rsmd = resultSet.getMetaData();
 
             int columnsNumber = rsmd.getColumnCount();

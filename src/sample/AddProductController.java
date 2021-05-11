@@ -22,17 +22,12 @@ public class AddProductController {
     @FXML
     private TextField priceTextField;
 
-    @FXML
-    private TextArea descriptionTextArea;
 
     @FXML
     private TextField dateTextField;
 
     @FXML
-    private CheckBox veganCheckbox;
-
-    @FXML
-    private CheckBox glutenFreeCheckbox;
+    private TextField weightTextField;
 
     @FXML
     private Button addProductButton;
@@ -62,17 +57,6 @@ public class AddProductController {
         category = categoryTextField.getText();
         price = priceTextField.getText();
         date = dateTextField.getText();
-        description = descriptionTextArea.getText();
-
-        if(veganCheckbox.isSelected())
-        {
-            isVegan = true;
-        }
-
-        if(glutenFreeCheckbox.isSelected())
-        {
-            isGlutenFree = true;
-        }
 
         if(name.isEmpty() || category.isEmpty() || price.isEmpty())
         {
@@ -99,15 +83,13 @@ public class AddProductController {
         try {
 
             connection = DB_connection.connect();
-            String query = "INSERT INTO `food_products` (`product_name`, `product_catagory`, `price`, `product_description`, `is_veggie`, `is_gluten_free`, `Users_user_id`) VALUES(?,?,?,?,?,?,?)";
+            String query = "INSERT INTO `food_products` (`product_name`, `product_category`, `price`, `product_weight`, `Users_user_id`) VALUES(?,?,?,?,?,?,?)";
             ps = connection.prepareStatement(query);
             ps.setString(1, nameTextField.getText());
             ps.setString(2, categoryTextField.getText());
             ps.setInt(3, Integer.parseInt(priceTextField.getText()));
-            ps.setString(4, descriptionTextArea.getText());
-            ps.setBoolean(5, isVegan);
-            ps.setBoolean(6, isGlutenFree);
-            ps.setInt(7, 8001);
+            ps.setInt(4, Integer.parseInt(weightTextField.getText()));
+            ps.setInt(7, app_Logic.current_user_id);
             ps.execute();
 
         } catch (SQLException exception) {
