@@ -3,9 +3,9 @@ import java.sql.*;
 import java.util.Date;
 
 public class DB_connection {
-    PreparedStatement ps;
+    private static ResultSet resultSet;
+    private static PreparedStatement ps;
     Statement statement;
-    ResultSet resultSet;
     ResultSetMetaData rsmd;
     private static Connection connection;
     private static String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=root";
@@ -90,6 +90,29 @@ public class DB_connection {
 
         }
     }
+
+    public static void insertProduct(String name, String category, String price, String weight)
+    {
+        try {
+            String insert_query = "INSERT INTO food_products VALUES(?, ?, ?, ?, ?, ?, ?)";
+            String max_product_id_Query = "SELECT max(product_id) FROM food_products";
+            resultSet = connection.prepareStatement(max_product_id_Query).executeQuery();
+            int current_product_id = resultSet.getInt(1) + 1;
+            ps = connection.prepareStatement(insert_query);
+            ps.setInt(1, current_product_id);
+            ps.setString(2, name);
+            ps.setString(3, category);
+            ps.setInt(4, Integer.parseInt(price));
+            ps.setInt(4, Integer.parseInt(weight));
+            ps.setInt(7, app_Logic.current_user_id);
+            ps.executeUpdate();
+
+        } catch (SQLException exception) {
+            System.out.println("Query failed to execute");
+            exception.printStackTrace();
+        }
+    }
+
 
     // *********************** To be added to the Gui functionalities ********************
 

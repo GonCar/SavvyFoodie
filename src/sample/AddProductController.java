@@ -62,7 +62,7 @@ public class AddProductController {
             warningLabel.setText("Please fill the required fields");
         }else
         {
-            insertProducts();
+            DB_connection.insertProduct(name, category, price, weight);
         }
     }
 
@@ -77,23 +77,4 @@ public class AddProductController {
         window.show();
     }
 
-    public void insertProducts()
-    {
-        try {
-
-            connection = DB_connection.connect();
-            String query = "INSERT INTO `food_products` (`product_name`, `product_category`, `price`, `product_weight`, `Users_user_id`) VALUES(?,?,?,?,?,?,?)";
-            ps = connection.prepareStatement(query);
-            ps.setString(1, nameTextField.getText());
-            ps.setString(2, categoryTextField.getText());
-            ps.setInt(3, Integer.parseInt(priceTextField.getText()));
-            ps.setInt(4, Integer.parseInt(weightTextField.getText()));
-            ps.setInt(7, app_Logic.current_user_id);
-            ps.execute();
-
-        } catch (SQLException exception) {
-            System.out.println("Query failed to execute");
-            exception.printStackTrace();
-        }
-    }
 }
