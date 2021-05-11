@@ -1,29 +1,24 @@
 package sample;
-import Interface.IConnection;
 import java.sql.*;
 import java.util.Date;
-import java.util.List;
 
 public class DB_connection {
-
-    IConnection connection;
-    String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=root";
     PreparedStatement ps;
     Statement statement;
     ResultSet resultSet;
     ResultSetMetaData rsmd;
+    private static Connection connection;
+    private static String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=root";
 
-    public DB_connection(IConnection connection){
-        this.connection = connection;
-    }
-
-    public void connect() {
-        try{
-            connection.getConnection(this.url);
-        }
-        catch (SQLException ex){
+    public static Connection connect (){
+        try {
+            connection = DriverManager.getConnection(url);
+        } catch (SQLException ex) {
             System.out.println("connection failed!");
+            ex.printStackTrace();
         }
+
+        return  connection;
     }
 
     public void disconnect() {
@@ -36,6 +31,67 @@ public class DB_connection {
             System.out.println("closing the resources failed!");
         }
     }
+
+    public void showProducts()
+    {
+        try{
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("Select * from products");
+            rsmd = resultSet.getMetaData();
+
+            int columnsNumber = rsmd.getColumnCount();
+            while (resultSet.next()) {
+                for(int i = 1 ; i <= columnsNumber; i++){
+                    System.out.print("|" + resultSet.getString(i) + "| ");
+                }
+                System.out.println();
+            }
+
+        }catch (SQLException exception){
+            System.out.println("Query failed to execute");
+            exception.printStackTrace();
+        }
+    }
+
+    public void addProduct(String product_name, String category, boolean is_veggie, boolean is_gluten_free, int product_weight, int price, Date expiry_date)
+    {
+        try {
+
+            statement = connection.createStatement();
+            statement.executeUpdate("INSERT INTO products" + "VALUES (" + product_name +","+ category +"," + is_veggie +"," + is_gluten_free +"," + product_weight +","+ price+","+ expiry_date +")");
+
+        }catch (SQLException exception)
+        {
+
+            System.out.println("Could not add product to database");
+            exception.printStackTrace();
+
+        }
+    }
+
+    public void deleteProduct(String productId)
+    {
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("SET FOREIGN_KEY_CHECKS=0;");
+
+            statement = connection.createStatement();
+
+            int row = statement.executeUpdate("Delete from products WHERE product_id= '"+ productId + "'");
+
+            System.out.println("The customer was successfully deleted.\n");
+            System.out.println(row + " affected");
+
+        }catch (SQLException exception)
+        {
+
+            System.out.println("Product couldn't be deleted");
+            exception.printStackTrace();
+
+        }
+    }
+
+    // *********************** To be added to the Gui functionalities ********************
 
     public void filter_by_price(int min_price, int max_price){
         try{
@@ -52,7 +108,7 @@ public class DB_connection {
                     System.out.println(
                             "\n" +    a +
                                     ". Product Name: " + resultSet.getString(2)+
-                                    "\nQuantity in stock: " + resultSet.getInt(9)+
+                                    "\nQuantity in stock(kg): " + resultSet.getInt(6)+
                                     "\nPrice per kg: " + resultSet.getDouble(4)+
                                     " USD\n-----------------------------");
                     a++;
@@ -79,9 +135,9 @@ public class DB_connection {
                 System.out.println("---------------------------");
                 System.out.println(
                         "Product : " + resultSet.getString(2)+
-                                ", " + resultSet.getString(3)+
-                                "\nOld price: " + resultSet.getString(4)+
-                                "\nNew price : " + new_price);
+                         ", " + resultSet.getString(3)+
+                         "\nOld price: " + resultSet.getString(4)+
+                         "\nNew price : " + new_price);
             }
         }catch(SQLException ex){
             System.out.println("Error on executing statement!");
@@ -113,7 +169,7 @@ public class DB_connection {
 
     public void filter_by_category(String category) {
         try{
-            ps = connection.prepareStatement("SELECT * FROM food_products WHERE product_catagory = ?");
+            ps = connection.prepareStatement("SELECT * FROM food_products WHERE product_category = ?");
             ps.setString(1, category);
             resultSet = ps.executeQuery();
             int a = 1;
@@ -123,11 +179,11 @@ public class DB_connection {
                 resultSet = ps.executeQuery();
                 while(resultSet.next()){
                     System.out.println(
-                         "\n" +    a +
-                         ". Product Name: " + resultSet.getString(2)+
-                         "\nQuantity in stock: " + resultSet.getInt(9)+
-                         "\nPrice per kg: " + resultSet.getDouble(4)+
-                         " USD\n-----------------------------");
+                            "\n" +    a +
+                                    ". Product Name: " + resultSet.getString(2)+
+                                    "\nQuantity in stock: " + resultSet.getInt(6)+
+                                    "\nPrice per kg: " + resultSet.getDouble(4)+
+                                    " USD\n-----------------------------");
                     a++;
                 }
             }
@@ -139,7 +195,7 @@ public class DB_connection {
     public void filter_by_city(String city) {
         try{
             ps = connection.prepareStatement("SELECT user_name, product_name, " +
-                    "product_catagory, price, product_weight , city FROM food_products" +
+                    "product_category, price, product_weight , city FROM food_products" +
                     " INNER JOIN users ON  food_products.Users_user_id = users.user_id" +
                     " WHERE users.city = ?");
             ps.setString(1, city);
@@ -151,75 +207,18 @@ public class DB_connection {
                 resultSet = ps.executeQuery();
                 while(resultSet.next()){
                     System.out.println(
-                          "\n" +    a +
-                          ". Product Name: " + resultSet.getString(2)+
-                          "\nQuantity in stock: " + resultSet.getInt(5)+
-                          "\nPrice per kg: " + resultSet.getDouble(4)+ " USD" +
-                          "\nSeller : " + resultSet.getString(1)+
-                          "\nCity : " + resultSet.getString(6)+
-                          "\n-----------------------------");
+                            "\n" +    a +
+                                    ". Product Name: " + resultSet.getString(2)+
+                                    "\nQuantity in stock: " + resultSet.getInt(5)+
+                                    "\nPrice per kg: " + resultSet.getDouble(4)+ " USD" +
+                                    "\nSeller : " + resultSet.getString(1)+
+                                    "\nCity : " + resultSet.getString(6)+
+                                    "\n-----------------------------");
                     a++;
                 }
             }
         }catch(SQLException ex){
             System.out.println("Error on executing statement!");
-        }
-    }
-
-
-    public void showProducts() {
-        try{
-
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("Select * from products");
-            rsmd = resultSet.getMetaData();
-
-            int columnsNumber = rsmd.getColumnCount();
-            while (resultSet.next()) {
-                for(int i = 1 ; i <= columnsNumber; i++){
-                    System.out.print("|" + resultSet.getString(i) + "| ");
-                }
-                System.out.println();
-            }
-
-        }catch (SQLException exception){
-            System.out.println("Query failed to execute!");
-            exception.printStackTrace();
-        }
-    }
-
-    public void addProduct(String product_name, String category, boolean is_veggie, boolean is_gluten_free, int product_weight, int price, Date expiry_date) {
-        try {
-
-            statement = connection.createStatement();
-            int veggie = (is_veggie)? 1 : 0;
-            int gluten = (is_gluten_free)? 1: 0;
-            statement.executeUpdate("INSERT INTO products" + "VALUES (" + product_name +","+ category +"," + veggie +"," + gluten +"," + product_weight +","+ price+","+ expiry_date +")");
-        }catch (SQLException exception)
-        {
-            System.out.println("Could not add product to database!");
-            exception.printStackTrace();
-        }
-    }
-
-    public void deleteProduct(String productId) {
-        try {
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SET FOREIGN_KEY_CHECKS=0;");
-
-            statement = connection.createStatement();
-
-            int row = statement.executeUpdate("Delete from products WHERE product_id= '"+ productId + "'");
-
-            System.out.println("The customer was successfully deleted.\n");
-            System.out.println(row + " affected");
-
-        }catch (SQLException exception)
-        {
-
-            System.out.println("Product couldn't be deleted!");
-            exception.printStackTrace();
-
         }
     }
 

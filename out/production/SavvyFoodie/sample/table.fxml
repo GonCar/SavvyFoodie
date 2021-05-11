@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="455.0" prefWidth="567.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <TableView fx:id="table_info" layoutY="52.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="567.0">
+        <columns>
+          <TableColumn fx:id="col_name" prefWidth="94.0" text="name" />
+          <TableColumn fx:id="col_category" prefWidth="94.0" text="category" />
+            <TableColumn fx:id="col_weight" prefWidth="60.0" text="weight" />
+            <TableColumn fx:id="col_gluten" prefWidth="69.0" text="gluten free" />
+            <TableColumn fx:id="col_vegan" prefWidth="49.0" text="vegan" />
+            <TableColumn fx:id="col_price" prefWidth="68.0" text="price" />
+            <TableColumn fx:id="col_date" prefWidth="113.0" text="expiry date" />
+        </columns>
+      </TableView>
+      <Button fx:id="addProductButton" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#addProductButtonOnAction" text="Add Product" />
+   </children>
+</AnchorPane>
