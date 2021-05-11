@@ -10,7 +10,7 @@ import java.sql.Statement;
 public class FakeFoodieConnection implements IConnection {
 
     @Override
-    public Connection getConnection(String url) throws SQLException {
+    public void getConnection(String url) throws SQLException {
         throw new SQLException();
     }
 

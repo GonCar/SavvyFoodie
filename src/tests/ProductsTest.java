@@ -25,29 +25,11 @@ class ProductsTest {
         Assertions.assertEquals("apple", test.getProduct_name());
     }
 
-/**
-   @Test
-    void is_veggieTrue(){
-       System.out.println("Boolean Veggie('true/false') test passed");
-        Products test = new Products("Test", "Test", true, false, 0, 0);
-        Assertions.assertEquals( true, test.isIs_veggie());
-    }
-
-    @Test
-    void getBoolean_isGlutenFree(){
-        System.out.println("Boolean Gluten Free('true/false') test passed");
-        Products test = new Products("Test", "Test", false, true, 0, 0);
-        Assertions.assertEquals( true, test.isIs_gluten_free());
-    }
-**/
     @Test
     void getProduct_weight(){
         System.out.println("Product Weight test passed");
         Products test = new Products("Test", "Test", 55, 0, 0);
         Assertions.assertEquals(55, test.getProduct_weight());
     }
-
-
-
 
 }
