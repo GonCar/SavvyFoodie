@@ -11,11 +11,9 @@
    <children>
       <TextField fx:id="nameTextField" layoutX="220.0" layoutY="44.0" promptText="name" />
       <TextField fx:id="categoryTextField" layoutX="220.0" layoutY="80.0" promptText="category" />
+      <TextField fx:id="weightTestField" layoutX="220.0" layoutY="118.0" promptText="Weight (kg)" />
       <TextField fx:id="priceTextField" layoutX="220.0" layoutY="118.0" promptText="price" />
-      <TextField fx:id="dateTextField" layoutX="220.0" layoutY="157.0" promptText="expirartion date" />
-      <TextArea fx:id="descriptionTextArea" layoutX="220.0" layoutY="194.0" prefHeight="75.0" prefWidth="161.0" promptText="Description" />
-      <CheckBox fx:id="veganCheckbox" layoutX="257.0" layoutY="284.0" mnemonicParsing="false" text="Vegan" />
-      <CheckBox fx:id="glutenFreeCheckbox" layoutX="257.0" layoutY="313.0" mnemonicParsing="false" text="Gluten Free" />
+      <TextField fx:id="dateTextField" layoutX="220.0" layoutY="157.0" promptText="expiration date" />
       <Button fx:id="addProductButton" layoutX="257.0" layoutY="346.0" mnemonicParsing="false" onAction="#addProductButtonOnAction" text="Add Product" />
       <Label fx:id="warningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="225.0" layoutY="14.0" />
       <Button fx:id="returnButton" layoutX="257.0" layoutY="382.0" mnemonicParsing="false" onAction="#returnButtonOnAction" prefHeight="27.0" prefWidth="86.0" text="Return" />
