@@ -1,6 +1,10 @@
 package sample;
 
+import java.util.*;
+
 public class app_Logic {
+    static List shipping_cart = new ArrayList();
+    static int current_user_id;
     public static void main(String[] args) {
         //DB_connection connection = new DB_connection(new FoodieConnection());
         //connection.connect();
