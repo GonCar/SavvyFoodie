@@ -71,7 +71,7 @@ public class loginController implements Initializable {
     }
 
     public void loginButtonOnAction(ActionEvent event) throws IOException {
-        if(usernameTextField.getText().isBlank() == false && passwordTextField.getText().isBlank() == false)
+        if(!usernameTextField.getText().isBlank() && !passwordTextField.getText().isBlank())
         {
             if(checkLogin())
             {

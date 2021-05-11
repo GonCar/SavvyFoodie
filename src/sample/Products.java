@@ -13,18 +13,6 @@ public class Products {
     int price;
     Date expiry_date;
 
-
-/*public Products(int product_id, String product_name, String category, boolean is_veggie, boolean is_gluten_free, int product_weight, int price, Date expiry_date) {
-        this.product_name = product_name;
-        this.category = category;
-        this.is_veggie = is_veggie;
-        this.is_gluten_free = is_gluten_free;
-        this.product_id = product_id;
-        this.product_weight = product_weight;
-        this.price = price;
-        this.expiry_date = expiry_date;
-    }*/
-
     public Products(String product_name, String category, boolean is_veggie, boolean is_gluten_free, int product_weight, int price) {
 
         this.product_name = product_name;
@@ -36,20 +24,6 @@ public class Products {
         //this.expiry_date = expiry_date;
     }
 
-    @Override
-    public String toString() {
-        return "Products{" +
-                "product_name='" + product_name + '\'' +
-                ", category='" + category + '\'' +
-                ", description='" + description + '\'' +
-                ", is_veggie=" + is_veggie +
-                ", is_gluten_free=" + is_gluten_free +
-                ", product_id=" + product_id +
-                ", product_weight=" + product_weight +
-                ", price=" + price +
-                ", expiry_date=" + expiry_date +
-                '}';
-    }
 
     //setters
     public String getProduct_name() { return product_name; }

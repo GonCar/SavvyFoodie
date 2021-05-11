@@ -23,8 +23,6 @@ import java.sql.*;
 
 public class Controller implements Initializable {
 
-
-
     @FXML
     protected TableView<Products> table_info;
 
@@ -92,7 +90,7 @@ public class Controller implements Initializable {
                         resultSet.getBoolean("is_gluten_free"),
                         resultSet.getInt("product_weight"),
                         resultSet.getInt("price")));
-                        //resultSet.getDate("expiary_left")));
+                //resultSet.getDate("expiary_left")));
                 table_info.setItems(productsList);
             }
 
