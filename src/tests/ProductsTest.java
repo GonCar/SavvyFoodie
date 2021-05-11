@@ -1,4 +1,4 @@
-package test;
+package tests;
 import java.util.Date;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
