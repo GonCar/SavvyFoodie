@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import sample.DB_connection;
+import sample.FoodieConnection;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -16,7 +17,8 @@ public class DBTest {
     @DisplayName("Connection Test")
     void ConnectionTest() throws Exception{
         System.out.println("Open Connection");
-        DB_connection result = new DB_connection();
+        DB_connection result = new DB_connection(new FoodieConnection());
+        result.connect();
         assertEquals(result != null, true);
     }
 

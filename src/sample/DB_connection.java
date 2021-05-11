@@ -1,4 +1,6 @@
 package sample;
+import Interface.IConnection;
+
 import java.sql.*;
 import java.util.Date;
 
@@ -9,18 +11,24 @@ public class DB_connection {
     Statement statement;
     ResultSet resultSet;
     ResultSetMetaData rsmd;
-    private static Connection connection;
+    private IConnection connection;
     private static String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=root";
 
-    public static Connection connect (){
+    public DB_connection(IConnection con){
+        this.connection = con;
+    }
+
+    public IConnection getConnection(){
+        return this.connection;
+    }
+
+    public void connect(){
         try {
-            connection = DriverManager.getConnection(url);
+            connection.getConnection(url);
         } catch (SQLException ex) {
             System.out.println("connection failed!");
             ex.printStackTrace();
         }
-
-        return  connection;
     }
 
     public void disconnect() {

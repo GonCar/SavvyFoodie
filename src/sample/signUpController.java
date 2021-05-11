@@ -55,7 +55,7 @@ public class signUpController implements Initializable {
     @FXML
     private Button returnButton;
 
-    Connection connection;
+    DB_connection connection;
     PreparedStatement ps;
     Statement statement;
     ResultSet resultSet;
@@ -122,8 +122,9 @@ public class signUpController implements Initializable {
     {
         boolean userExists = false;
         try {
-            connection = DB_connection.connect();
-            statement = connection.createStatement();
+            connection = new DB_connection(new FoodieConnection());
+            connection.connect();
+            statement = connection.getConnection().createStatement();
             resultSet = statement.executeQuery("SELECT count(*) FROM users WHERE user_name = '"+ userTextField.getText() +"' AND email = '"+ emailTextField.getText() +"'");
 
 
@@ -149,9 +150,10 @@ public class signUpController implements Initializable {
     {
         try {
 
-            connection = DB_connection.connect();
+            connection = new DB_connection(new FoodieConnection());
+            connection.connect();
             String query = "INSERT INTO `users` (`user_name`, `entity`, `password`, `email`) VALUES(?,?,?,?)";
-            ps = connection.prepareStatement(query);
+            ps = connection.getConnection().prepareStatement(query);
             ps.setString(1, userTextField.getText());
             ps.setString(2, entityComboBox.getValue());
             ps.setString(3, passwordTextField.getText());

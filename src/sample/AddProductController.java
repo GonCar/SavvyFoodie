@@ -1,5 +1,6 @@
 package sample;
 
+import Interface.IConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,7 +44,7 @@ public class AddProductController {
     @FXML
     private Button returnButton;
 
-    Connection connection;
+    DB_connection connection;
     PreparedStatement ps;
     Statement statement;
     ResultSet resultSet;
@@ -98,9 +99,10 @@ public class AddProductController {
     {
         try {
 
-            connection = DB_connection.connect();
+            connection = new DB_connection(new FoodieConnection());
+            connection.connect();
             String query = "INSERT INTO `food_products` (`product_name`, `product_catagory`, `price`, `product_description`, `is_veggie`, `is_gluten_free`, `Users_user_id`) VALUES(?,?,?,?,?,?,?)";
-            ps = connection.prepareStatement(query);
+            ps = connection.getConnection().prepareStatement(query);
             ps.setString(1, nameTextField.getText());
             ps.setString(2, categoryTextField.getText());
             ps.setInt(3, Integer.parseInt(priceTextField.getText()));
