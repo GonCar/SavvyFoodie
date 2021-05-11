@@ -47,9 +47,7 @@ public class AddProductController {
     String category;
     String price;
     String date;
-    String description;
-    Boolean isVegan = false;
-    Boolean isGlutenFree = false;
+    String weight;
 
     public void addProductButtonOnAction(ActionEvent event) throws IOException
     {
@@ -57,6 +55,7 @@ public class AddProductController {
         category = categoryTextField.getText();
         price = priceTextField.getText();
         date = dateTextField.getText();
+        weight = weightTextField.getText();
 
         if(name.isEmpty() || category.isEmpty() || price.isEmpty())
         {
