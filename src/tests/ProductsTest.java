@@ -12,24 +12,25 @@ class ProductsTest {
 
     @Test
     void getProduct_id(){
-        System.out.println("Product ID test passed");
-        Products test = new Products("Test", "Test", 0, 0, 0);
-        Assertions.assertEquals( 0, test.getProduct_id());
-
+        System.out.println("Product Name test passed");
+        Products test = new Products("apple", "", 0, 0, 120);
+        Assertions.assertEquals( "apple", test.getProduct_name());
     }
 
     @Test
     void getProduct_name(){
-        System.out.println("Product Name test passed");
-        Products test = new Products("apple", "Test", 0, 0, 0);
-        Assertions.assertEquals("apple", test.getProduct_name());
+        System.out.println("Product Category test passed");
+        Products test = new Products("", "Fruit", 0, 0, 120);
+        Assertions.assertEquals("Fruit", test.getCategory());
     }
 
     @Test
     void getProduct_weight(){
         System.out.println("Product Weight test passed");
-        Products test = new Products("Test", "Test", 55, 0, 0);
-        Assertions.assertEquals(55, test.getProduct_weight());
+        Products test = new Products("apple", "", 99,0, 120);
+        Assertions.assertEquals(99, test.getProduct_weight());
     }
 
 }
+
+
