@@ -16,8 +16,9 @@ class ProductsTest {
     @Test
     void getProduct_id(){
         System.out.println("Product Name test passed");
-        Products test = new Products("apple", "", 0, 0, 120);
+        Products test = new Products("apple", "", true, true, 0, 120);
         Assertions.assertEquals( "apple", test.getProduct_name());
+
     }
 
  */
@@ -52,6 +53,10 @@ class ProductsTest {
         Assertions.assertEquals(2021-05-12, test.getExpiry_date());
     }
 
+
+
+
+
 /*
    @Test
     void is_veggieTrue(){
@@ -74,9 +79,12 @@ class ProductsTest {
     @Test
     void getProduct_weight(){
         System.out.println("Product Weight test passed");
-        Products test = new Products("apple", "", 99,0, 120);
+        Products test = new Products("apple", "", 99, 0, 2021-05-24 );
         Assertions.assertEquals(99, test.getProduct_weight());
     }
+
+
+
 
 }
 
