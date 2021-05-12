@@ -11,6 +11,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AddProductController {
     @FXML
@@ -62,7 +65,7 @@ public class AddProductController {
             warningLabel.setText("Please fill the required fields");
         }else
         {
-            DB_connection.insertProduct(name, category, price, weight);
+            DB_connection.insertProduct(name, category, price, date, weight);
         }
     }
 

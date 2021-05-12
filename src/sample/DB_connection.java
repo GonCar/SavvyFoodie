@@ -91,24 +91,24 @@ public class DB_connection {
         }
     }
 
-    public static void insertProduct(String name, String category, String price, String weight)
+    public static void insertProduct(String name, String category, String price, String expiry_date, String weight)
     {
         try {
-            String insert_query = "INSERT INTO food_products VALUES(?, ?, ?, ?, ?, ?, ?)";
+            String insert_query = "INSERT INTO food_products VALUES(?, ?, ?, ?, STR_TO_DATE('"+expiry_date+"', '%Y-%m-%d'), ?, ?)";
             String max_product_id_Query = "SELECT max(product_id) FROM food_products";
             resultSet = connection.prepareStatement(max_product_id_Query).executeQuery();
-            int current_product_id = resultSet.getInt(1) + 1;
+            resultSet.next();
+            int current_product_id = resultSet.getInt(  1);
             ps = connection.prepareStatement(insert_query);
-            ps.setInt(1, current_product_id);
+            ps.setInt(1, current_product_id + 1);
             ps.setString(2, name);
             ps.setString(3, category);
             ps.setInt(4, Integer.parseInt(price));
-            ps.setInt(4, Integer.parseInt(weight));
-            ps.setInt(7, app_Logic.current_user_id);
+            ps.setInt(5, Integer.parseInt(weight));
+            ps.setInt(6, 8002);
             ps.executeUpdate();
-
         } catch (SQLException exception) {
-            System.out.println("Query failed to execute");
+            System.out.println("Query failed to execute :)");
             exception.printStackTrace();
         }
     }
