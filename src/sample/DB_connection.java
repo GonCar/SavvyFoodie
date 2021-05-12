@@ -99,7 +99,7 @@ public class DB_connection {
         }
     }
 
-    public static void insertProduct(String name, String category, String price, String expiry_date, String weight)
+    public void insertProduct(String name, String category, String price, String expiry_date, String weight)
     {
         try {
             String insert_query = "INSERT INTO food_products VALUES(?, ?, ?, ?, STR_TO_DATE('"+expiry_date+"', '%Y-%m-%d'), ?, ?)";
