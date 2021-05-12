@@ -79,7 +79,7 @@ class ProductsTest {
     @Test
     void getProduct_weight(){
         System.out.println("Product Weight test passed");
-        Products test = new Products("apple", "", 99, 0, 2021 );
+        Products test = new Products("apple", "", 99, 0, 2021-05-24 );
         Assertions.assertEquals(99, test.getProduct_weight());
     }
 
