@@ -43,7 +43,7 @@ public class loginController implements Initializable {
     @FXML
     private Button signUpButton;
 
-    Connection connection;
+    DB_connection connection;
     PreparedStatement ps;
     Statement statement;
     ResultSet resultSet;
@@ -96,8 +96,9 @@ public class loginController implements Initializable {
     {
         boolean userExists = false;
         try {
-            connection = DB_connection.connect();
-            statement = connection.createStatement();
+            connection = new DB_connection(new FoodieConnection());
+            connection.connect();
+            statement = connection.getConnection().createStatement();
             resultSet = statement.executeQuery("SELECT count(*) FROM users WHERE user_name = '"+ usernameTextField.getText() +"' AND password = '"+ passwordTextField.getText() +"'");
 
 

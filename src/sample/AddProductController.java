@@ -1,5 +1,6 @@
 package sample;
 
+import Interface.IConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,7 +42,7 @@ public class AddProductController {
     @FXML
     private Button returnButton;
 
-    Connection connection;
+    DB_connection connection;
     PreparedStatement ps;
     Statement statement;
     ResultSet resultSet;
@@ -65,7 +66,9 @@ public class AddProductController {
             warningLabel.setText("Please fill the required fields");
         }else
         {
-            DB_connection.insertProduct(name, category, price, date, weight);
+            connection = new DB_connection(new FoodieConnection());
+            connection.connect();
+            connection.insertProduct(name, category, price, date, weight);
         }
     }
 
@@ -79,5 +82,4 @@ public class AddProductController {
         window.setTitle("Main store");
         window.show();
     }
-
 }

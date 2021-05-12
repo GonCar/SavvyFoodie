@@ -36,6 +36,7 @@ public class DB_connectionTest {
         System.setOut(originalOut);
     }
 
+    /**
     @Test
     void testFilterPrice(){
         System.setOut(new PrintStream(outContent));
@@ -81,13 +82,14 @@ public class DB_connectionTest {
         assertEquals(true, result.contains("Error on executing statement!"));
         System.setOut(originalOut);
     }
+     **/
     @Test
     void testShowProducts(){
         System.setOut(new PrintStream(outContent));
         DB_connection dbCon = new DB_connection(new FakeFoodieConnection());
         dbCon.showProducts();
         String result = outContent.toString();
-        assertEquals(true, result.contains("Query failed to execute!"));
+        assertEquals(true, result.contains("Query failed to execute"));
         System.setOut(originalOut);
     }
     @Test
@@ -96,7 +98,7 @@ public class DB_connectionTest {
         DB_connection dbCon = new DB_connection(new FakeFoodieConnection());
         dbCon.addProduct("cola", "drink",false,false,150,10,  new Date());
         String result = outContent.toString();
-        assertEquals(true, result.contains("Could not add product to database!"));
+        assertEquals(true, result.contains("Could not add product to database"));
         System.setOut(originalOut);
     }
     @Test
@@ -105,7 +107,7 @@ public class DB_connectionTest {
         DB_connection dbCon = new DB_connection(new FakeFoodieConnection());
         dbCon.deleteProduct("cola");
         String result = outContent.toString();
-        assertEquals(true, result.contains("Product couldn't be deleted!"));
+        assertEquals(true, result.contains("Product couldn't be deleted"));
         System.setOut(originalOut);
     }
 }

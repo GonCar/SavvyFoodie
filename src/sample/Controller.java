@@ -51,7 +51,7 @@ public class Controller implements Initializable {
     private Button addProductButton;
 
 
-    Connection connection;
+    DB_connection connection;
     PreparedStatement ps;
     Statement statement;
     ResultSet resultSet;
@@ -77,9 +77,12 @@ public class Controller implements Initializable {
     private void refreshTable() {
         try {
             productsList.clear();
+            this.connection = new DB_connection(new FoodieConnection());
+            connection.connect();
 
-            statement = connection.createStatement();
+            statement = connection.getConnection().createStatement();
             resultSet = statement.executeQuery("Select product_name, product_category, product_weight, price, expiry_date from food_products");
+
 
 
             while (resultSet.next()){
@@ -104,8 +107,8 @@ public class Controller implements Initializable {
 
     private void loadData()
     {
-
-        connection = DB_connection.connect();
+        this.connection = new DB_connection(new FoodieConnection());
+        connection.connect();
 
 
         col_name.setCellValueFactory(new PropertyValueFactory<>("product_name"));

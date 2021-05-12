@@ -12,9 +12,7 @@
           <TableColumn fx:id="col_name" prefWidth="94.0" text="name" />
           <TableColumn fx:id="col_category" prefWidth="94.0" text="category" />
             <TableColumn fx:id="col_weight" prefWidth="60.0" text="weight" />
-            <TableColumn fx:id="col_gluten" prefWidth="69.0" text="gluten free" />
-            <TableColumn fx:id="col_vegan" prefWidth="49.0" text="vegan" />
-            <TableColumn fx:id="col_price" prefWidth="68.0" text="price" />
+            <TableColumn fx:id="col_price" prefWidth="68.0" text="price (per kg)" />
             <TableColumn fx:id="col_date" prefWidth="113.0" text="expiry date" />
         </columns>
       </TableView>
