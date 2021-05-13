@@ -102,11 +102,11 @@ public class DB_connection {
         }
     }
 
-    public void removeProduct(int product_id){
+    public void removeProduct(long expiry_date){
         try {
-            String query = "DELETE FROM food_products WHERE product_id=?";
+            String query = "DELETE FROM food_products WHERE expiry_date=?";
             ps = connection.prepareStatement(query);
-            ps.setInt(1, product_id);
+            ps.setLong(1, expiry_date);
             ps.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();

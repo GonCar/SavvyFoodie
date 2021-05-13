@@ -13,6 +13,7 @@ public class app_Logic {
     static Connection connection = DB.connect();
 
     public static void main(String[] args) {
+        removeExpired();
     }
     public static void startApp(){
     }
@@ -21,11 +22,10 @@ public class app_Logic {
     public static void removeExpired(){
         String today = DateTimeFormatter.BASIC_ISO_DATE.format(LocalDate.now());
         long todays_Date = Integer.parseInt(today);
-
         app_Logic.DB.getAllProducts().stream()
                 .filter(x-> x.getExpiry_date() < todays_Date)
-                .map(Products::getProduct_id)
-                .forEach(x -> app_Logic.DB.removeProduct(x));
+                .map(Products::getExpiry_date)
+                .forEach(x ->app_Logic.DB.removeProduct(x));
     }
 }
 //    public static void main(String[] args) {
