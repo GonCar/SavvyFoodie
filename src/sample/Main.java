@@ -18,8 +18,9 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-
+        app_Logic.removeExpired();
         launch(args);
+
         /*
         DB_connection connection = new DB_connection();
         connection.connect();

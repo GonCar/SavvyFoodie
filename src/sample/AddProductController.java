@@ -42,11 +42,6 @@ public class AddProductController {
     @FXML
     private Button returnButton;
 
-    DB_connection connection;
-    PreparedStatement ps;
-    Statement statement;
-    ResultSet resultSet;
-
     String name;
     String category;
     String price;
@@ -66,9 +61,7 @@ public class AddProductController {
             warningLabel.setText("Please fill the required fields");
         }else
         {
-            connection = new DB_connection(new FoodieConnection());
-            connection.connect();
-            connection.insertProduct(name, category, price, date, weight);
+            app_Logic.DB.insertProduct(name, category, price, date, weight);
         }
     }
 

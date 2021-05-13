@@ -21,7 +21,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class signUpController implements Initializable {
-
+    PreparedStatement ps;
+    ResultSet resultSet;
     @FXML
     private TextField userTextField;
 
@@ -54,11 +55,6 @@ public class signUpController implements Initializable {
 
     @FXML
     private Button returnButton;
-
-    DB_connection connection;
-    PreparedStatement ps;
-    Statement statement;
-    ResultSet resultSet;
 
     ObservableList<String> entitiesObservableList = FXCollections.observableArrayList("Private", "Supermarket");
 
@@ -122,12 +118,9 @@ public class signUpController implements Initializable {
     {
         boolean userExists = false;
         try {
-            connection = new DB_connection(new FoodieConnection());
-            connection.connect();
-            statement = connection.getConnection().createStatement();
-            resultSet = statement.executeQuery("SELECT count(*) FROM users WHERE user_name = '"+ userTextField.getText() +"' AND email = '"+ emailTextField.getText() +"'");
 
-
+            ps = app_Logic.connection.prepareStatement("SELECT count(*) FROM users WHERE user_name = '"+ userTextField.getText() +"' AND email = '"+ emailTextField.getText() +"'");
+            ps.executeQuery();
             while(resultSet.next())
             {
                 if(resultSet.getInt(1) == 1)
@@ -149,11 +142,8 @@ public class signUpController implements Initializable {
     private void insertUser()
     {
         try {
-
-            connection = new DB_connection(new FoodieConnection());
-            connection.connect();
             String query = "INSERT INTO `users` (`user_name`, `entity`, `password`, `email`) VALUES(?,?,?,?)";
-            ps = connection.getConnection().prepareStatement(query);
+            ps = app_Logic.connection.prepareStatement(query);
             ps.setString(1, userTextField.getText());
             ps.setString(2, entityComboBox.getValue());
             ps.setString(3, passwordTextField.getText());
