@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -38,12 +39,6 @@ public class Controller implements Initializable {
     protected TableColumn<Products, Integer> col_weight;
 
     @FXML
-    protected TableColumn<Products, Boolean> col_gluten;
-
-    @FXML
-    protected TableColumn<Products, Boolean> col_vegan;
-
-    @FXML
     protected TableColumn<Products, Integer> col_price;
 
     @FXML
@@ -52,11 +47,15 @@ public class Controller implements Initializable {
     @FXML
     private Button addProductButton;
 
+    @FXML
+    private Button removeProductButton;
+
     ObservableList<Products> productsList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         loadData();
+        table_info.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     public void addProductButtonOnAction(ActionEvent event) throws IOException
@@ -79,6 +78,11 @@ public class Controller implements Initializable {
             System.out.println("Failed to refresh table");
             exception.printStackTrace();
         }
+    }
+    public void removeProductButtonOnAction(){
+        Products selected = (Products) table_info.getSelectionModel().getSelectedItem();
+        app_Logic.DB.removeProduct(selected.getExpiry_date(), selected.getProduct_name());
+        productsList.remove(selected);
     }
     private void loadData()
     {

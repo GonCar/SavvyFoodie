@@ -44,6 +44,9 @@ public class AddProductController {
 
     String name;
     String category;
+    String city;
+    String country;
+    String phone_number;
     String price;
     String date;
     String weight;

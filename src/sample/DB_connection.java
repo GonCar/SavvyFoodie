@@ -113,9 +113,24 @@ public class DB_connection {
             System.out.println("Query failed to delete product :( ");
         }
     }
-
-
-
+    public void removeProduct(long expiry_date, String name){
+        try {
+            String query = "select product_id FROM food_products WHERE expiry_date=? AND product_name=?";
+            String query2 = "DELETE FROM food_products WHERE product_id=?";
+            ps = connection.prepareStatement(query);
+            ps.setLong(1, expiry_date);
+            ps.setString(2, name);
+            resultSet = ps.executeQuery();
+            resultSet.next();
+            int productId = resultSet.getInt(1);
+            ps = connection.prepareStatement(query2);
+            ps.setInt(1, productId);
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("Query failed to delete product :( ");
+        }
+    }
     // *********************** To be added to the Gui functionalities ********************
 
     public void filter_by_price(int min_price, int max_price){
