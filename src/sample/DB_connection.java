@@ -3,19 +3,23 @@ import java.sql.*;
 import java.util.Date;
 
 public class DB_connection {
-    String url = "jdbc:mysql://127.0.0.1:3306/classicmodels?user=root&password=root";
-    Connection connection;
+
     PreparedStatement ps;
     Statement statement;
     ResultSet resultSet;
     ResultSetMetaData rsmd;
-    public void connect() {
-        try{
+    private static Connection connection;
+    private static String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=GyroZeppeli";
+
+    public static Connection connect (){
+        try {
             connection = DriverManager.getConnection(url);
-        }
-        catch (SQLException ex){
+        } catch (SQLException ex) {
             System.out.println("connection failed!");
+            ex.printStackTrace();
         }
+
+        return  connection;
     }
 
     public void disconnect() {
