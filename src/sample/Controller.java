@@ -137,6 +137,7 @@ public class Controller implements Initializable {
             ObservableList<Products> SelectedItems = table_info.getSelectionModel().getSelectedItems();
             int item;
             int sizeOfSelectedItems = SelectedItems.size() - 1;
+
             while (sizeOfSelectedItems >= 0)
             {
                 ps = connection.prepareStatement(query);
@@ -145,10 +146,7 @@ public class Controller implements Initializable {
                 ps.execute();
                 sizeOfSelectedItems--;
             }
-            //ps = connection.prepareStatement(query);
-            //int product_id = table_info.getSelectionModel().getSelectedItem().getProduct_id();
-            //ps.setInt(1, product_id);
-            //ps.execute();
+
             refreshTable();
 
         }catch (SQLException exception)
