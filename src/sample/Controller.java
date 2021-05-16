@@ -54,8 +54,8 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        loadData();
         table_info.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        loadData();
     }
 
     public void addProductButtonOnAction(ActionEvent event) throws IOException
@@ -80,9 +80,18 @@ public class Controller implements Initializable {
         }
     }
     public void removeProductButtonOnAction(){
-        Products selected = (Products) table_info.getSelectionModel().getSelectedItem();
-        app_Logic.DB.removeProduct(selected.getExpiry_date(), selected.getProduct_name());
-        productsList.remove(selected);
+        try {
+            ObservableList<Products> selectedItems = table_info.getSelectionModel().getSelectedItems();
+            int i = selectedItems.size() - 1;
+            while (i >= 0) {
+                app_Logic.DB.removeProduct(selectedItems.get(i).getExpiry_date(), selectedItems.get(i).getProduct_name());
+                productsList.remove(selectedItems.get(i));
+                i--;
+            }
+        }catch(Exception e){
+            System.out.println("Something went wrong deleting the product");
+            System.out.println(e);
+        }
     }
     private void loadData()
     {

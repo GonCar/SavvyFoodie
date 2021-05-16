@@ -102,6 +102,29 @@ public class DB_connection {
         }
     }
 
+    public void insertUser(String user_name, String entity, String password, String city, String country, String email)
+    {
+        try {
+            String query = "INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String max_user_id = "SELECT max(user_id) FROM users";
+            resultSet = connection.prepareStatement(max_user_id).executeQuery();
+            resultSet.next();
+            int current_user_id = resultSet.getInt(  1) + 1;
+            ps= connection.prepareStatement(query);
+            ps.setInt(1, current_user_id);
+            ps.setString(2, user_name);
+            ps.setString(3, entity);
+            ps.setString(4, password);
+            ps.setString(5, city);
+            ps.setString(6, country);
+            ps.setString(7, email);
+            ps.execute();
+        } catch (SQLException exception) {
+            System.out.println("Query failed to add the user!");
+            exception.printStackTrace();
+        }
+    }
+
     public void removeProduct(long expiry_date){
         try {
             String query = "DELETE FROM food_products WHERE expiry_date=?";

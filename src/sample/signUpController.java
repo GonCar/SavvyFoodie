@@ -30,6 +30,12 @@ public class signUpController implements Initializable {
     private TextField emailTextField;
 
     @FXML
+    private TextField cityTextField;
+
+    @FXML
+    private TextField countryTextField;
+
+    @FXML
     private PasswordField passwordTextField;
 
     @FXML
@@ -70,6 +76,8 @@ public class signUpController implements Initializable {
         String user = userTextField.getText();
         String email = emailTextField.getText();
         String entity = entityComboBox.getValue();
+        String city = cityTextField.getText();
+        String country = countryTextField.getText();
         String password = passwordTextField.getText();
         String confirmPassword = confirmPasswordTextField.getText();
 
@@ -102,7 +110,7 @@ public class signUpController implements Initializable {
 
         if(!user.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty() && matcher.matches() && password.equals(confirmPassword) && !checkUserExists())
         {
-            insertUser();
+            app_Logic.DB.insertUser(user, entity, password, city, country, email);
             Parent parent = FXMLLoader.load(getClass().getResource("login.fxml"));
             Scene scene = new Scene(parent);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -120,7 +128,7 @@ public class signUpController implements Initializable {
         try {
 
             ps = app_Logic.connection.prepareStatement("SELECT count(*) FROM users WHERE user_name = '"+ userTextField.getText() +"' AND email = '"+ emailTextField.getText() +"'");
-            ps.executeQuery();
+            resultSet = ps.executeQuery();
             while(resultSet.next())
             {
                 if(resultSet.getInt(1) == 1)
@@ -139,23 +147,6 @@ public class signUpController implements Initializable {
 
     }
 
-    private void insertUser()
-    {
-        try {
-            String query = "INSERT INTO `users` (`user_name`, `entity`, `password`, `email`) VALUES(?,?,?,?)";
-            ps = app_Logic.connection.prepareStatement(query);
-            ps.setString(1, userTextField.getText());
-            ps.setString(2, entityComboBox.getValue());
-            ps.setString(3, passwordTextField.getText());
-            ps.setString(4, emailTextField.getText());
-            ps.execute();
-
-
-        } catch (SQLException exception) {
-            System.out.println("Query failed to execute");
-            exception.printStackTrace();
-        }
-    }
 
     public void returnButtonOnAction(ActionEvent event) throws IOException
     {
