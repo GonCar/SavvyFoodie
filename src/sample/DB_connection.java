@@ -94,12 +94,26 @@ public class DB_connection {
             ps.setString(3, category);
             ps.setInt(4, Integer.parseInt(price));
             ps.setInt(5, Integer.parseInt(weight));
-            ps.setInt(6, 8002);
+            ps.setInt(6, app_Logic.current_user_id);
             ps.executeUpdate();
         } catch (SQLException exception) {
             System.out.println("Query failed to execute :)");
             exception.printStackTrace();
         }
+    }
+
+    public int getUserId( String user_name){
+        try {
+            ps = connection.prepareStatement("SELECT user_id FROM users WHERE user_name= ?");
+            ps.setString(1, user_name);
+            resultSet = ps.executeQuery();
+            resultSet.next();
+            return resultSet.getInt(1);
+        } catch (SQLException e) {
+            System.out.println("Failed to get user Id");
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     public void insertUser(String user_name, String entity, String password, String city, String country, String email)

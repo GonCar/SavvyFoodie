@@ -69,10 +69,9 @@ public class loginController implements Initializable {
     }
 
     public void loginButtonOnAction(ActionEvent event) throws IOException {
-        if(!usernameTextField.getText().isBlank() && !passwordTextField.getText().isBlank())
-        {
-            if(checkLogin())
-            {
+        if(!usernameTextField.getText().isBlank() && !passwordTextField.getText().isBlank()) {
+            if(checkLogin()) {
+                app_Logic.current_user_id = app_Logic.DB.getUserId(usernameTextField.getText());
                 Parent tableViewParent = FXMLLoader.load(getClass().getResource("table.fxml"));
                 Scene tableViewScene = new Scene(tableViewParent);
 
@@ -82,38 +81,28 @@ public class loginController implements Initializable {
                 window.setTitle("Main store");
                 window.show();
             }
-        }else
-        {
+        }else {
             invalidLoginLabel.setText("You must enter both username and password");
         }
     }
-    public boolean checkLogin()
-    {
+    public boolean checkLogin() {
         boolean userExists = false;
         try {
-
             ps = app_Logic.connection.prepareStatement( "SELECT count(*) FROM users WHERE user_name = '"+ usernameTextField.getText() +"' AND password = '"+ passwordTextField.getText() +"'");
             resultSet = ps.executeQuery();
-            while(resultSet.next())
-            {
-                if(resultSet.getInt(1) == 1)
-                {
+            while(resultSet.next()) {
+                if(resultSet.getInt(1) == 1) {
                     invalidLoginLabel.setText("You're in");
                     userExists = true;
 
-                }else
-                {
+                }else {
                     invalidLoginLabel.setText("User not found");
                 }
             }
-
-        }catch (SQLException exception)
-        {
+        }catch (SQLException exception) {
             System.out.println("Query failed to execute");
             exception.printStackTrace();
         }
-
         return userExists;
-
     }
 }
