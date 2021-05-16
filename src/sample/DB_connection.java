@@ -9,7 +9,7 @@ public class DB_connection {
     ResultSet resultSet;
     ResultSetMetaData rsmd;
     private static Connection connection;
-    private static String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=GyroZeppeli";
+    private static String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=root";
 
     public static Connection connect (){
         try {
