@@ -9,45 +9,45 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="534.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.signUpController">
+<AnchorPane prefHeight="534.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.signUpController">
    <children>
-      <Text layoutX="257.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+      <Text layoutX="173.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
          <font>
             <Font name="System Italic" size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="userTextField" layoutX="220.0" layoutY="61.0" />
-      <Text layoutX="258.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+      <TextField fx:id="userTextField" layoutX="289.0" layoutY="98.0" />
+      <Text layoutX="176.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
             <Font name="System Italic" size="20.0" />
          </font>
       </Text>
-      <Text layoutX="222.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password">
+      <Text layoutX="98.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password">
          <font>
             <Font name="System Italic" size="20.0" />
          </font>
       </Text>
-      <PasswordField fx:id="confirmPasswordTextField" layoutX="219.0" layoutY="384.0" />
-      <PasswordField fx:id="passwordTextField" layoutX="221.0" layoutY="292.0" />
-      <ComboBox fx:id="entityComboBox" layoutX="219.0" layoutY="139.0" prefHeight="27.0" prefWidth="161.0" />
-      <Text layoutX="276.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Entity">
+      <PasswordField fx:id="confirmPasswordTextField" layoutX="289.0" layoutY="390.0" />
+      <PasswordField fx:id="passwordTextField" layoutX="289.0" layoutY="344.0" />
+      <ComboBox fx:id="entityComboBox" layoutX="283.0" layoutY="148.0" prefHeight="27.0" prefWidth="161.0" />
+      <Text layoutX="197.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Entity">
          <font>
             <Font name="System Italic" size="20.0" />
          </font>
       </Text>
-      <Button fx:id="registerButton" layoutX="222.0" layoutY="446.0" mnemonicParsing="false" onAction="#RegisterButton" prefHeight="27.0" prefWidth="154.0" text="Register" />
-      <Button fx:id="returnButton" layoutX="222.0" layoutY="487.0" mnemonicParsing="false" onAction="#returnButtonOnAction" prefHeight="27.0" prefWidth="154.0" text="Return" />
+      <Button fx:id="registerButton" layoutX="299.0" layoutY="460.0" mnemonicParsing="false" onAction="#RegisterButton" prefHeight="27.0" prefWidth="154.0" text="Register" />
+      <Button fx:id="returnButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#returnButtonOnAction" prefHeight="27.0" prefWidth="73.0" text="&lt;-  Return" />
       <Label fx:id="warningLabel" layoutX="206.0" layoutY="417.0" textFill="RED">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Text layoutX="275.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+      <Text layoutX="206.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
          <font>
             <Font name="System Italic" size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="emailTextField" layoutX="218.0" layoutY="217.0" />
+      <TextField fx:id="emailTextField" layoutX="289.0" layoutY="296.0" />
       <Label fx:id="invalidEmailLabel" layoutX="398.0" layoutY="218.0" textFill="RED">
          <font>
             <Font size="20.0" />
@@ -63,5 +63,17 @@
             <Font size="20.0" />
          </font>
       </Label>
+      <Text layoutX="213.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City">
+         <font>
+            <Font name="System Italic" size="20.0" />
+         </font>
+      </Text>
+      <TextField fx:id="cityTextField" layoutX="289.0" layoutY="206.0" />
+      <TextField fx:id="countryTextField" layoutX="289.0" layoutY="255.0" />
+      <Text layoutX="178.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Country" wrappingWidth="87.49022483825684">
+         <font>
+            <Font name="System Italic" size="20.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

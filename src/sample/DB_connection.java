@@ -1,32 +1,31 @@
 package sample;
-import Interface.IConnection;
+
+import com.sun.security.jgss.GSSUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DB_connection {
     private static ResultSet resultSet;
     private static PreparedStatement ps;
     Statement statement;
     ResultSetMetaData rsmd;
-    private IConnection connection;
+    private Connection connection;
     private static String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=root";
 
-    public DB_connection(IConnection con){
-        this.connection = con;
-    }
 
-    public IConnection getConnection(){
-        return this.connection;
-    }
-
-    public void connect(){
-        try {
-            connection.getConnection(url);
-        } catch (SQLException ex) {
-            System.out.println("connection failed!");
-            ex.printStackTrace();
+    public Connection connect() {
+        try{
+            connection = DriverManager.getConnection(url);
+            return connection;
         }
+        catch (SQLException ex){
+            System.out.println("connection failed!");
+        }
+        return null;
     }
 
     public void disconnect() {
@@ -54,50 +53,32 @@ public class DB_connection {
                 }
                 System.out.println();
             }
-
         }catch (SQLException exception){
             System.out.println("Query failed to execute");
             exception.printStackTrace();
         }
     }
 
-    public void addProduct(String product_name, String category, boolean is_veggie, boolean is_gluten_free, int product_weight, int price, Date expiry_date)
-    {
+    public List<Products> getAllProducts() {
+        List<Products> allProducts = new ArrayList<>();
         try {
-
-            statement = connection.createStatement();
-            statement.executeUpdate("INSERT INTO products" + "VALUES (" + product_name +","+ category +"," + is_veggie +"," + is_gluten_free +"," + product_weight +","+ price+","+ expiry_date +")");
-
-        }catch (SQLException exception)
-        {
-
-            System.out.println("Could not add product to database");
+            ps = connection.prepareStatement("Select product_name, product_category, product_weight, price, expiry_date from food_products");
+            resultSet = ps.executeQuery();
+            while (resultSet.next()){
+                allProducts.add(new Products(
+                        resultSet.getString("product_name"),
+                        resultSet.getString("product_category"),
+                        resultSet.getInt("product_weight"),
+                        resultSet.getInt("price"),
+                        resultSet.getLong("expiry_date")));
+            }
+        } catch (SQLException exception) {
+            System.out.println("Query failed to execute");
             exception.printStackTrace();
-
         }
+        return allProducts;
     }
 
-    public void deleteProduct(String productId)
-    {
-        try {
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SET FOREIGN_KEY_CHECKS=0;");
-
-            statement = connection.createStatement();
-
-            int row = statement.executeUpdate("Delete from products WHERE product_id= '"+ productId + "'");
-
-            System.out.println("The customer was successfully deleted.\n");
-            System.out.println(row + " affected");
-
-        }catch (SQLException exception)
-        {
-
-            System.out.println("Product couldn't be deleted");
-            exception.printStackTrace();
-
-        }
-    }
 
     public void insertProduct(String name, String category, String price, String expiry_date, String weight)
     {
@@ -121,7 +102,58 @@ public class DB_connection {
         }
     }
 
+    public void insertUser(String user_name, String entity, String password, String city, String country, String email)
+    {
+        try {
+            String query = "INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String max_user_id = "SELECT max(user_id) FROM users";
+            resultSet = connection.prepareStatement(max_user_id).executeQuery();
+            resultSet.next();
+            int current_user_id = resultSet.getInt(  1) + 1;
+            ps= connection.prepareStatement(query);
+            ps.setInt(1, current_user_id);
+            ps.setString(2, user_name);
+            ps.setString(3, entity);
+            ps.setString(4, password);
+            ps.setString(5, city);
+            ps.setString(6, country);
+            ps.setString(7, email);
+            ps.execute();
+        } catch (SQLException exception) {
+            System.out.println("Query failed to add the user!");
+            exception.printStackTrace();
+        }
+    }
 
+    public void removeProduct(long expiry_date){
+        try {
+            String query = "DELETE FROM food_products WHERE expiry_date=?";
+            ps = connection.prepareStatement(query);
+            ps.setLong(1, expiry_date);
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("Query failed to delete product :( ");
+        }
+    }
+    public void removeProduct(long expiry_date, String name){
+        try {
+            String query = "select product_id FROM food_products WHERE expiry_date=? AND product_name=?";
+            String query2 = "DELETE FROM food_products WHERE product_id=?";
+            ps = connection.prepareStatement(query);
+            ps.setLong(1, expiry_date);
+            ps.setString(2, name);
+            resultSet = ps.executeQuery();
+            resultSet.next();
+            int productId = resultSet.getInt(1);
+            ps = connection.prepareStatement(query2);
+            ps.setInt(1, productId);
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("Query failed to delete product :( ");
+        }
+    }
     // *********************** To be added to the Gui functionalities ********************
 
     public void filter_by_price(int min_price, int max_price){

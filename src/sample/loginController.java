@@ -25,6 +25,9 @@ import java.io.IOException;
 
 public class loginController implements Initializable {
 
+    PreparedStatement ps;
+    ResultSet resultSet;
+
     @FXML
     private TextField usernameTextField;
 
@@ -43,18 +46,13 @@ public class loginController implements Initializable {
     @FXML
     private Button signUpButton;
 
-    DB_connection connection;
-    PreparedStatement ps;
-    Statement statement;
-    ResultSet resultSet;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         invalidLoginLabel.setText("");
         invalidLoginLabel.setMaxWidth(Double.MAX_VALUE);
-        anchorPane.setLeftAnchor(invalidLoginLabel, 0.0);
-        anchorPane.setRightAnchor(invalidLoginLabel, 0.0);
+        AnchorPane.setLeftAnchor(invalidLoginLabel, 0.0);
+        AnchorPane.setRightAnchor(invalidLoginLabel, 0.0);
         invalidLoginLabel.setAlignment(Pos.CENTER);
     }
 
@@ -84,35 +82,23 @@ public class loginController implements Initializable {
                 window.setTitle("Main store");
                 window.show();
             }
-
-
         }else
         {
             invalidLoginLabel.setText("You must enter both username and password");
         }
     }
-
     public boolean checkLogin()
     {
         boolean userExists = false;
         try {
-            connection = new DB_connection(new FoodieConnection());
-            connection.connect();
-            statement = connection.getConnection().createStatement();
-            resultSet = statement.executeQuery("SELECT count(*) FROM users WHERE user_name = '"+ usernameTextField.getText() +"' AND password = '"+ passwordTextField.getText() +"'");
 
-
+            ps = app_Logic.connection.prepareStatement( "SELECT count(*) FROM users WHERE user_name = '"+ usernameTextField.getText() +"' AND password = '"+ passwordTextField.getText() +"'");
+            resultSet = ps.executeQuery();
             while(resultSet.next())
             {
                 if(resultSet.getInt(1) == 1)
                 {
                     invalidLoginLabel.setText("You're in");
-
-//
-//                    ps = connection.prepareStatement("SELECT user_id FROM users WHERE user_name=?");
-//                    ps.setString(1, usernameTextField.getText());
-//                    resultSet = ps.executeQuery();
-//                   app_Logic.current_user_id = resultSet.getInt("user_id");
                     userExists = true;
 
                 }else
