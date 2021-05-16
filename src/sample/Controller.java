@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -63,6 +64,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        table_info.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         loadData();
     }
 
@@ -132,11 +134,21 @@ public class Controller implements Initializable {
         String query = "DELETE FROM food_products WHERE product_id = ?";
         try
         {
-            ps = connection.prepareStatement(query);
-            int product_id = table_info.getSelectionModel().getSelectedItem().getProduct_id();
-            System.out.println(product_id);
-            ps.setInt(1, product_id);
-            ps.execute();
+            ObservableList<Products> SelectedItems = table_info.getSelectionModel().getSelectedItems();
+            int item;
+            int sizeOfSelectedItems = SelectedItems.size() - 1;
+            while (sizeOfSelectedItems >= 0)
+            {
+                ps = connection.prepareStatement(query);
+                item = SelectedItems.get(sizeOfSelectedItems).getProduct_id();
+                ps.setInt(1, item);
+                ps.execute();
+                sizeOfSelectedItems--;
+            }
+            //ps = connection.prepareStatement(query);
+            //int product_id = table_info.getSelectionModel().getSelectedItem().getProduct_id();
+            //ps.setInt(1, product_id);
+            //ps.execute();
             refreshTable();
 
         }catch (SQLException exception)
