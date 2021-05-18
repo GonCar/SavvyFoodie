@@ -86,4 +86,15 @@ public class Controller implements Initializable {
         col_Email.setCellValueFactory(new PropertyValueFactory<>("owner_contact"));
         refreshTable();
     }
+
+    public void logOutProductButtonOnAction(ActionEvent event) throws IOException{
+        loginController x = new loginController();
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(tableViewScene);
+        window.setTitle("");
+        window.show();
+    }
+
 }
