@@ -1,20 +1,15 @@
 package sample;
 
-import com.sun.security.jgss.GSSUtil;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DB_connection {
     private static ResultSet resultSet;
+    private static ResultSet resultSet2;
     private static PreparedStatement ps;
-    Statement statement;
-    ResultSetMetaData rsmd;
     private Connection connection;
-    private static String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=root";
+    final static String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=root";
 
 
     public Connection connect() {
@@ -22,7 +17,7 @@ public class DB_connection {
             connection = DriverManager.getConnection(url);
             return connection;
         }
-        catch (SQLException ex){
+        catch (SQLException e){
             System.out.println("connection failed!");
         }
         return null;
@@ -34,47 +29,32 @@ public class DB_connection {
             if(ps != null){ ps.close();}
             if(resultSet != null){ resultSet.close();}
         }
-        catch (SQLException ex){
+        catch (SQLException e){
             System.out.println("closing the resources failed!");
-        }
-    }
-
-    public void showProducts()
-    {
-        try{
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("Select * from food_products");
-            rsmd = resultSet.getMetaData();
-
-            int columnsNumber = rsmd.getColumnCount();
-            while (resultSet.next()) {
-                for(int i = 1 ; i <= columnsNumber; i++){
-                    System.out.print("|" + resultSet.getString(i) + "| ");
-                }
-                System.out.println();
-            }
-        }catch (SQLException exception){
-            System.out.println("Query failed to execute");
-            exception.printStackTrace();
         }
     }
 
     public List<Products> getAllProducts() {
         List<Products> allProducts = new ArrayList<>();
         try {
-            ps = connection.prepareStatement("Select product_name, product_category, product_weight, price, expiry_date from food_products");
+            ps = connection.prepareStatement("Select product_name, product_category, product_weight, price, expiry_date, Users_user_id from food_products");
             resultSet = ps.executeQuery();
             while (resultSet.next()){
+                PreparedStatement get_contact = connection.prepareStatement("Select email from users where user_id = ?");
+                get_contact.setInt(1, resultSet.getInt("Users_user_id"));
+                resultSet2 = get_contact.executeQuery();
+                resultSet2.next();
                 allProducts.add(new Products(
                         resultSet.getString("product_name"),
                         resultSet.getString("product_category"),
                         resultSet.getInt("product_weight"),
                         resultSet.getInt("price"),
-                        resultSet.getLong("expiry_date")));
+                        resultSet.getLong("expiry_date"),
+                        resultSet2.getString(1)));
             }
-        } catch (SQLException exception) {
+        } catch (SQLException e) {
             System.out.println("Query failed to execute");
-            exception.printStackTrace();
+            e.printStackTrace();
         }
         return allProducts;
     }
@@ -145,8 +125,8 @@ public class DB_connection {
             ps = connection.prepareStatement(query);
             ps.setLong(1, expiry_date);
             ps.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
             System.out.println("Query failed to delete product :( ");
         }
     }
@@ -163,8 +143,8 @@ public class DB_connection {
             ps = connection.prepareStatement(query2);
             ps.setInt(1, productId);
             ps.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
             System.out.println("Query failed to delete product :( ");
         }
     }
@@ -244,7 +224,7 @@ public class DB_connection {
         }
     }
 
-    public void filter_by_category(String category) {
+    public void sdafilter_by_category(String category) {
         try{
             ps = connection.prepareStatement("SELECT * FROM food_products WHERE product_category = ?");
             ps.setString(1, category);

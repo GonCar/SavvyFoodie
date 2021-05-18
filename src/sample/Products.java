@@ -1,6 +1,5 @@
 package sample;
 
-import java.util.Date;
 
 public class Products {
     String product_name;
@@ -10,14 +9,16 @@ public class Products {
     int product_weight;
     int price;
     long expiry_date;
+    String owner_contact;
 
-    public Products(String product_name, String category, int product_weight, int price , long expiry_date) {
+    public Products(String product_name, String category, int product_weight, int price , long expiry_date, String owner_contact) {
 
         this.product_name = product_name;
         this.category = category;
         this.product_weight = product_weight;
         this.price = price;
         this.expiry_date = expiry_date;
+        this.owner_contact = owner_contact;
     }
 
 
@@ -28,6 +29,8 @@ public class Products {
     public void setCategory(String category) { this.category = category; }
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
+    public void setOwner_contact(String owner_contact) { this.owner_contact = owner_contact; }
+
     // getters
     public int getProduct_id() { return product_id; }
     public void setProduct_id(int product_id) { this.product_id = product_id; }
@@ -37,4 +40,5 @@ public class Products {
     public void setPrice(int price) { this.price = price; }
     public long getExpiry_date() { return expiry_date; }
     public void setExpiry_date(long expiry_date) { this.expiry_date = expiry_date; }
+    public String getOwner_contact() { return owner_contact; }
 }
