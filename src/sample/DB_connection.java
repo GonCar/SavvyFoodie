@@ -82,6 +82,21 @@ public class DB_connection {
         }
     }
 
+
+    public int getUserId( String user_name){
+        try {
+            ps = connection.prepareStatement("SELECT user_id FROM users WHERE user_name= ?");
+            ps.setString(1, user_name);
+            resultSet = ps.executeQuery();
+            resultSet.next();
+            return resultSet.getInt(1);
+        } catch (SQLException e) {
+            System.out.println("Failed to get user Id");
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public void insertUser(String user_name, String entity, String password, String city, String country, String email)
     {
         try {
@@ -111,8 +126,8 @@ public class DB_connection {
             ps = connection.prepareStatement(query);
             ps.setLong(1, expiry_date);
             ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
             System.out.println("Query failed to delete product :( ");
         }
     }
@@ -129,8 +144,8 @@ public class DB_connection {
             ps = connection.prepareStatement(query2);
             ps.setInt(1, productId);
             ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
             System.out.println("Query failed to delete product :( ");
         }
     }
