@@ -21,7 +21,6 @@ public class Products {
         this.owner_contact = owner_contact;
     }
 
-
     //setters
     public String getProduct_name() { return product_name; }
     public void setProduct_name(String product_name) { this.product_name = product_name; }
