@@ -15,19 +15,23 @@ public class app_Logic {
     public static void main(String[] args) {
         removeExpired();
     }
-    public static void startApp(){
-    }
 
 
     public static void removeExpired(){
         String today = DateTimeFormatter.BASIC_ISO_DATE.format(LocalDate.now());
-        long todays_Date = Integer.parseInt(today);
+        long today_Date = Integer.parseInt(today);
         app_Logic.DB.getAllProducts().stream()
-                .filter(x-> x.getExpiry_date() < todays_Date)
+                .filter(x-> x.getExpiry_date() < today_Date)
                 .map(Products::getExpiry_date)
                 .forEach(x ->app_Logic.DB.removeProduct(x));
     }
 }
+
+
+
+
+
+
 //    public static void main(String[] args) {
 //        //DB_connection connection = new DB_connection(new FoodieConnection());
 //        //connection.connect();

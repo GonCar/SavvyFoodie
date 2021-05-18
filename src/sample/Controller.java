@@ -39,6 +39,9 @@ public class Controller implements Initializable {
     protected TableColumn<Products, Integer> col_weight;
 
     @FXML
+    protected TableColumn<User, String> col_Email;
+
+    @FXML
     protected TableColumn<Products, Integer> col_price;
 
     @FXML
@@ -100,6 +103,7 @@ public class Controller implements Initializable {
         col_weight.setCellValueFactory(new PropertyValueFactory<>("product_weight"));
         col_price.setCellValueFactory(new PropertyValueFactory<>("price"));
         col_date.setCellValueFactory(new PropertyValueFactory<>("expiry_date"));
+        col_Email.setCellValueFactory(new PropertyValueFactory<>("owner_contact"));
         refreshTable();
     }
 }
