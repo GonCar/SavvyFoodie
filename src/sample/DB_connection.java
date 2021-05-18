@@ -74,7 +74,7 @@ public class DB_connection {
             ps.setString(3, category);
             ps.setInt(4, Integer.parseInt(price));
             ps.setInt(5, Integer.parseInt(weight));
-            ps.setInt(6, 8002);
+            ps.setInt(6, app_Logic.current_user_id);
             ps.executeUpdate();
         } catch (SQLException exception) {
             System.out.println("Query failed to execute :)");
