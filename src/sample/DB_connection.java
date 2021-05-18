@@ -1,5 +1,9 @@
 package sample;
 
+import com.sun.security.jgss.GSSUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -224,7 +228,7 @@ public class DB_connection {
         }
     }
 
-    public void sdafilter_by_category(String category) {
+    public void filter_by_category(String category) {
         try{
             ps = connection.prepareStatement("SELECT * FROM food_products WHERE product_category = ?");
             ps.setString(1, category);

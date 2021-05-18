@@ -1,5 +1,6 @@
 package sample;
 
+import java.util.Date;
 
 public class Products {
     String product_name;
@@ -19,6 +20,7 @@ public class Products {
         this.expiry_date = expiry_date;
         this.owner_contact = owner_contact;
     }
+
 
     //setters
     public String getProduct_name() { return product_name; }
