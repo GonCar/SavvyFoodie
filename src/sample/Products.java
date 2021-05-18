@@ -12,7 +12,6 @@ public class Products {
     String owner_contact;
 
     public Products(String product_name, String category, int product_weight, int price , long expiry_date, String owner_contact) {
-
         this.product_name = product_name;
         this.category = category;
         this.product_weight = product_weight;
@@ -20,7 +19,6 @@ public class Products {
         this.expiry_date = expiry_date;
         this.owner_contact = owner_contact;
     }
-
 
     //setters
     public String getProduct_name() { return product_name; }
