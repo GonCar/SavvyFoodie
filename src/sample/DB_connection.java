@@ -6,7 +6,6 @@ import java.util.List;
 
 public class DB_connection {
     private static ResultSet resultSet;
-    private static ResultSet resultSet2;
     private static PreparedStatement ps;
     private Connection connection;
     final static String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=root";
@@ -42,7 +41,7 @@ public class DB_connection {
             while (resultSet.next()){
                 PreparedStatement get_contact = connection.prepareStatement("Select email from users where user_id = ?");
                 get_contact.setInt(1, resultSet.getInt("Users_user_id"));
-                resultSet2 = get_contact.executeQuery();
+                ResultSet resultSet2 = get_contact.executeQuery();
                 resultSet2.next();
                 allProducts.add(new Products(
                         resultSet.getString("product_name"),
@@ -58,7 +57,6 @@ public class DB_connection {
         }
         return allProducts;
     }
-
 
     public void insertProduct(String name, String category, String price, String expiry_date, String weight)
     {
@@ -81,7 +79,6 @@ public class DB_connection {
             exception.printStackTrace();
         }
     }
-
 
     public int getUserId( String user_name){
         try {
@@ -131,6 +128,7 @@ public class DB_connection {
             System.out.println("Query failed to delete product :( ");
         }
     }
+
     public void removeProduct(long expiry_date, String name){
         try {
             String query = "select product_id FROM food_products WHERE expiry_date=? AND product_name=?";
@@ -149,6 +147,7 @@ public class DB_connection {
             System.out.println("Query failed to delete product :( ");
         }
     }
+
     // *********************** To be added to the Gui functionalities ********************
 
     public void filter_by_price(int min_price, int max_price){

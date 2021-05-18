@@ -15,54 +15,32 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 import java.sql.*;
 
 public class Controller implements Initializable {
     PreparedStatement ps;
     ResultSet resultSet;
-
-    @FXML
-    protected TableView<Products> table_info;
-
-    @FXML
-    protected TableColumn<Products, String> col_name;
-
-    @FXML
-    protected TableColumn<Products, String> col_category;
-
-    @FXML
-    protected TableColumn<Products, Integer> col_weight;
-
-    @FXML
-    protected TableColumn<User, String> col_Email;
-
-    @FXML
-    protected TableColumn<Products, Integer> col_price;
-
-    @FXML
-    protected TableColumn<Products, java.sql.Date> col_date;
-
-    @FXML
-    private Button addProductButton;
-
-    @FXML
-    private Button removeProductButton;
-
+    @FXML protected TableView<Products> table_info;
+    @FXML protected TableColumn<Products, String> col_name;
+    @FXML protected TableColumn<Products, String> col_category;
+    @FXML protected TableColumn<Products, Integer> col_weight;
+    @FXML protected TableColumn<User, String> col_Email;
+    @FXML protected TableColumn<Products, Integer> col_price;
+    @FXML protected TableColumn<Products, java.sql.Date> col_date;
+    @FXML private Button addProductButton;
+    @FXML private Button removeProductButton;
     ObservableList<Products> productsList = FXCollections.observableArrayList();
+
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         table_info.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         loadData();
     }
 
-    public void addProductButtonOnAction(ActionEvent event) throws IOException
-    {
+    public void addProductButtonOnAction(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("addProduct.fxml"));
         Scene scene = new Scene(parent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -71,6 +49,7 @@ public class Controller implements Initializable {
         window.setTitle("Add Product");
         window.show();
     }
+
     private void refreshTable() {
         try {
             productsList.clear();
@@ -82,6 +61,7 @@ public class Controller implements Initializable {
             exception.printStackTrace();
         }
     }
+
     public void removeProductButtonOnAction(){
         try {
             ObservableList<Products> selectedItems = table_info.getSelectionModel().getSelectedItems();
@@ -96,8 +76,8 @@ public class Controller implements Initializable {
             System.out.println(e);
         }
     }
-    private void loadData()
-    {
+
+    private void loadData() {
         col_name.setCellValueFactory(new PropertyValueFactory<>("product_name"));
         col_category.setCellValueFactory(new PropertyValueFactory<>("category"));
         col_weight.setCellValueFactory(new PropertyValueFactory<>("product_weight"));
