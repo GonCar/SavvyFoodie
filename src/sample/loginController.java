@@ -73,6 +73,7 @@ public class loginController implements Initializable {
         {
             if(checkLogin())
             {
+                app_Logic.current_user_id = app_Logic.DB.getUserId(usernameTextField.getText());
                 Parent tableViewParent = FXMLLoader.load(getClass().getResource("table.fxml"));
                 Scene tableViewScene = new Scene(tableViewParent);
 
