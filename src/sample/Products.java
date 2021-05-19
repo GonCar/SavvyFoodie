@@ -1,6 +1,5 @@
 package sample;
 
-import java.util.Date;
 
 public class Products {
     String product_name;

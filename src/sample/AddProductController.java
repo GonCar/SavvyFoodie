@@ -32,7 +32,7 @@ public class AddProductController {
         date = dateTextField.getText();
         weight = weightTextField.getText();
         if(name.isEmpty() || category.isEmpty() || price.isEmpty()) {
-            warningLabel.setText("Please fill the required fields :(");
+            warningLabel.setText("Please fill the required fields");
         }else {
             app_Logic.DB.insertProduct(name, category, price, date, weight);
             warningLabel.setText("  Product added :)");
