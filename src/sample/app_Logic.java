@@ -1,5 +1,8 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,6 +13,7 @@ public class app_Logic {
     static DB_connection DB = new DB_connection();
     static Connection connection = DB.connect();
     static Set<Products> filteredProducts = new HashSet<>();
+    static ObservableList<Products> productsList = FXCollections.observableArrayList();
 
     public static void removeExpired(){
         String today = DateTimeFormatter.BASIC_ISO_DATE.format(LocalDate.now());

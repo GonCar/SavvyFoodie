@@ -20,12 +20,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class filterOptionsController implements Initializable {
     @FXML private ComboBox<String> categoryComboBox;
     @FXML private TextField cityField;
-    @FXML private TextField maxSlider;
-    @FXML private TextField minSlider;
+    @FXML private TextField maxValue;
+    @FXML private TextField minValue;
+    @FXML private Label warningLabel;
     ObservableList<String> categoryComboBoxObservableList = FXCollections.observableArrayList("Fruits", "Vegetables");
 
     public void returnButtonOnAction(ActionEvent event) throws IOException {
@@ -39,16 +41,22 @@ public class filterOptionsController implements Initializable {
 
     public void filterProductsButtonOnAction(ActionEvent actionEvent) {
         String city = cityField.getText();
-        int maxPrice = Integer.parseInt(maxSlider.getText());
-        int minPrice = Integer.parseInt(minSlider.getText());
+        String maxPrice = maxValue.getText();
+        String minPrice = minValue.getText();
         String category = categoryComboBox.getValue();
-        if (city != null){
+        if (!city.isEmpty()){
             app_Logic.DB.filter_by_city(city);
         }
-        if (category != null){
+        if (!category.isEmpty()){
             app_Logic.DB.filter_by_category(category);
         }
-
+        if (!minPrice.isEmpty() & !maxPrice.isEmpty()){
+            int min = Integer.parseInt(minPrice);
+            int max = Integer.parseInt(maxPrice);
+            if (max > min){app_Logic.DB.filter_by_category(category);}
+            warningLabel.setText("Please set max price greater than min");
+        }
+        app_Logic.productsList = FXCollections.observableArrayList(app_Logic.filteredProducts);
     }
 
     @Override

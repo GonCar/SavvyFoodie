@@ -32,7 +32,7 @@ public class Controller implements Initializable {
     @FXML protected TableColumn<Products, java.sql.Date> col_date;
     @FXML private Button addProductButton;
     @FXML private Button removeProductButton;
-    ObservableList<Products> productsList = FXCollections.observableArrayList();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -51,10 +51,10 @@ public class Controller implements Initializable {
 
     private void refreshTable() {
         try {
-            productsList.clear();
+            app_Logic.productsList.clear();
             app_Logic.removeExpired();
-            productsList = FXCollections.observableArrayList(app_Logic.DB.getAllProducts());
-            table_info.setItems(productsList);
+            app_Logic.productsList = FXCollections.observableArrayList(app_Logic.DB.getAllProducts());
+            table_info.setItems(app_Logic.productsList);
         } catch (Exception exception) {
             System.out.println("Failed to refresh table");
             exception.printStackTrace();
@@ -67,7 +67,7 @@ public class Controller implements Initializable {
             int i = selectedItems.size() - 1;
             while (i >= 0) {
                 app_Logic.DB.removeProduct(selectedItems.get(i).getExpiry_date(), selectedItems.get(i).getProduct_name());
-                productsList.remove(selectedItems.get(i));
+                app_Logic.productsList.remove(selectedItems.get(i));
                 i--;
             }
         }catch(Exception e){
