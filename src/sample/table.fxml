@@ -19,7 +19,7 @@
       </TableView>
       <Button fx:id="addProductButton" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#addProductButtonOnAction" prefHeight="25.0" prefWidth="126.0" text="Add Product" />
       <Button fx:id="removeProductButton" layoutX="195.0" layoutY="20.0" mnemonicParsing="false" onAction="#removeProductButtonOnAction" prefHeight="25.0" prefWidth="126.0" text="Remove Product" />
-      <Button fx:id="logOutButton" layoutX="570.0" layoutY="20.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" text="Log Out" />
+      <Button fx:id="logOutButton" layoutX="570.0" layoutY="20.0" mnemonicParsing="false" onAction="#logOutProductButtonOnAction" prefHeight="25.0" prefWidth="126.0" text="Log Out" />
        <Button fx:id="filterButton" layoutX="379.0" layoutY="20.0" mnemonicParsing="false" onAction="#filterProductButtonOnAction" prefHeight="25.0" prefWidth="126.0" text="Filter" />
    </children>
 </AnchorPane>

@@ -156,23 +156,22 @@ public class DB_connection {
             ps.setInt(1, min_price);
             ps.setInt(2, max_price);
             resultSet = ps.executeQuery();
-            int a = 1;
-            if (!resultSet.next()){
-                System.out.println("\nNo food items of that price range!");
-            } else {
-                resultSet = ps.executeQuery();
-                while(resultSet.next()){
-                    System.out.println(
-                            "\n" +    a +
-                                    ". Product Name: " + resultSet.getString(2)+
-                                    "\nQuantity in stock(kg): " + resultSet.getInt(6)+
-                                    "\nPrice per kg: " + resultSet.getDouble(4)+
-                                    " USD\n-----------------------------");
-                    a++;
-                }
+            while (resultSet.next()){
+                PreparedStatement get_contact = connection.prepareStatement("Select email from users where user_id = ?");
+                get_contact.setInt(1, resultSet.getInt("Users_user_id"));
+                ResultSet resultSet2 = get_contact.executeQuery();
+                resultSet2.next();
+                app_Logic.filteredProducts.add(new Products(
+                        resultSet.getString("product_name"),
+                        resultSet.getString("product_category"),
+                        resultSet.getInt("product_weight"),
+                        resultSet.getInt("price"),
+                        resultSet.getLong("expiry_date"),
+                        resultSet2.getString(1)));
             }
-        }catch(SQLException ex){
-            System.out.println("Error on executing statement!");
+        } catch (SQLException e) {
+            System.out.println("Query failed to execute");
+            e.printStackTrace();
         }
     }
 
@@ -224,31 +223,29 @@ public class DB_connection {
         }
     }
 
-    public void sdafilter_by_category(String category) {
+    public void filter_by_category(String category) {
         try{
             ps = connection.prepareStatement("SELECT * FROM food_products WHERE product_category = ?");
             ps.setString(1, category);
             resultSet = ps.executeQuery();
-            int a = 1;
-            if (!resultSet.next()){
-                System.out.println("\nNo category" + category + " available!");
-            } else {
-                resultSet = ps.executeQuery();
-                while(resultSet.next()){
-                    System.out.println(
-                            "\n" +    a +
-                                    ". Product Name: " + resultSet.getString(2)+
-                                    "\nQuantity in stock: " + resultSet.getInt(6)+
-                                    "\nPrice per kg: " + resultSet.getDouble(4)+
-                                    " USD\n-----------------------------");
-                    a++;
-                }
+            while (resultSet.next()){
+                PreparedStatement get_contact = connection.prepareStatement("Select email from users where user_id = ?");
+                get_contact.setInt(1, resultSet.getInt("Users_user_id"));
+                ResultSet resultSet2 = get_contact.executeQuery();
+                resultSet2.next();
+                app_Logic.filteredProducts.add(new Products(
+                        resultSet.getString("product_name"),
+                        resultSet.getString("product_category"),
+                        resultSet.getInt("product_weight"),
+                        resultSet.getInt("price"),
+                        resultSet.getLong("expiry_date"),
+                        resultSet2.getString(1)));
             }
-        }catch(SQLException ex){
-            System.out.println("Error on executing statement!");
+        } catch (SQLException e) {
+            System.out.println("Query failed to execute");
+            e.printStackTrace();
         }
     }
-
     public void filter_by_city(String city) {
         try{
             ps = connection.prepareStatement("SELECT user_name, product_name, " +
@@ -257,25 +254,22 @@ public class DB_connection {
                     " WHERE users.city = ?");
             ps.setString(1, city);
             resultSet = ps.executeQuery();
-            int a = 1;
-            if (!resultSet.next()){
-                System.out.println("\nNo products in " + city + " available!");
-            } else {
-                resultSet = ps.executeQuery();
-                while(resultSet.next()){
-                    System.out.println(
-                            "\n" +    a +
-                                    ". Product Name: " + resultSet.getString(2)+
-                                    "\nQuantity in stock: " + resultSet.getInt(5)+
-                                    "\nPrice per kg: " + resultSet.getDouble(4)+ " USD" +
-                                    "\nSeller : " + resultSet.getString(1)+
-                                    "\nCity : " + resultSet.getString(6)+
-                                    "\n-----------------------------");
-                    a++;
-                }
+            while (resultSet.next()){
+                PreparedStatement get_contact = connection.prepareStatement("Select email from users where user_id = ?");
+                get_contact.setInt(1, resultSet.getInt("Users_user_id"));
+                ResultSet resultSet2 = get_contact.executeQuery();
+                resultSet2.next();
+                app_Logic.filteredProducts.add(new Products(
+                        resultSet.getString("product_name"),
+                        resultSet.getString("product_category"),
+                        resultSet.getInt("product_weight"),
+                        resultSet.getInt("price"),
+                        resultSet.getLong("expiry_date"),
+                        resultSet2.getString(1)));
             }
-        }catch(SQLException ex){
-            System.out.println("Error on executing statement!");
+        } catch (SQLException e) {
+            System.out.println("Query failed to execute");
+            e.printStackTrace();
         }
     }
 

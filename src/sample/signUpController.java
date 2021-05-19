@@ -34,7 +34,7 @@ public class signUpController implements Initializable {
     @FXML private ComboBox<String> entityComboBox;
     @FXML private Button registerButton;
     @FXML private Button returnButton;
-    ObservableList<String> entitiesObservableList = FXCollections.observableArrayList("Private", "Supermarket");
+    ObservableList<String> entitiesObservableList = FXCollections.observableArrayList("Private", "Supermarket", "Store", "Restaurant");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

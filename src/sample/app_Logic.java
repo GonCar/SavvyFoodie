@@ -3,11 +3,13 @@ package sample;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class app_Logic {
     static int current_user_id;
     static DB_connection DB = new DB_connection();
     static Connection connection = DB.connect();
+    static Set<Products> filteredProducts = new HashSet<>();
 
     public static void removeExpired(){
         String today = DateTimeFormatter.BASIC_ISO_DATE.format(LocalDate.now());
