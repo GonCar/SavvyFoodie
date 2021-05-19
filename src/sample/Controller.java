@@ -44,7 +44,6 @@ public class Controller implements Initializable {
         Parent parent = FXMLLoader.load(getClass().getResource("addProduct.fxml"));
         Scene scene = new Scene(parent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
         window.setScene(scene);
         window.setTitle("Add Product");
         window.show();
@@ -85,5 +84,24 @@ public class Controller implements Initializable {
         col_date.setCellValueFactory(new PropertyValueFactory<>("expiry_date"));
         col_Email.setCellValueFactory(new PropertyValueFactory<>("owner_contact"));
         refreshTable();
+    }
+
+    public void logOutProductButtonOnAction(ActionEvent event) throws IOException{
+        loginController x = new loginController();
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(tableViewScene);
+        window.setTitle("");
+        window.show();
+    }
+
+    public void filterProductButtonOnAction(ActionEvent event) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("filterOptions.fxml"));
+        Scene scene = new Scene(parent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.setTitle("Filter");
+        window.show();
     }
 }
