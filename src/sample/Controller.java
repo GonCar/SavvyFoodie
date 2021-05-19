@@ -44,7 +44,6 @@ public class Controller implements Initializable {
         Parent parent = FXMLLoader.load(getClass().getResource("addProduct.fxml"));
         Scene scene = new Scene(parent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
         window.setScene(scene);
         window.setTitle("Add Product");
         window.show();
@@ -97,4 +96,12 @@ public class Controller implements Initializable {
         window.show();
     }
 
+    public void filterProductButtonOnAction(ActionEvent event) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("filterOptions.fxml"));
+        Scene scene = new Scene(parent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.setTitle("Filter");
+        window.show();
+    }
 }
