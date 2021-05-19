@@ -28,4 +28,8 @@ public class filterOptionsController {
         window.setTitle("Main store");
         window.show();
     }
+
+    public void filterProductsButtonOnAction(ActionEvent actionEvent) {
+
+    }
 }
