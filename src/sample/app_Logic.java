@@ -10,10 +10,11 @@ import java.util.*;
 
 public class app_Logic {
     static int current_user_id;
+    static boolean filterOnAction = false;
     static DB_connection DB = new DB_connection();
     static Connection connection = DB.connect();
     static Set<Products> filteredProducts = new HashSet<>();
-    static ObservableList<Products> productsList = FXCollections.observableArrayList();
+    static List<Products> readyList = (filterOnAction) ? (List<Products>) filteredProducts : DB.getAllProducts();
 
     public static void removeExpired(){
         String today = DateTimeFormatter.BASIC_ISO_DATE.format(LocalDate.now());

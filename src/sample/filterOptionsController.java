@@ -39,7 +39,7 @@ public class filterOptionsController implements Initializable {
         window.show();
     }
 
-    public void filterProductsButtonOnAction(ActionEvent actionEvent) {
+    public void filterProductsButtonOnAction(ActionEvent event) throws IOException{
         String city = cityField.getText();
         String maxPrice = maxValue.getText();
         String minPrice = minValue.getText();
@@ -56,7 +56,14 @@ public class filterOptionsController implements Initializable {
             if (max > min){app_Logic.DB.filter_by_category(category);}
             warningLabel.setText("Please set max price greater than min");
         }
-        app_Logic.productsList = FXCollections.observableArrayList(app_Logic.filteredProducts);
+        app_Logic.filterOnAction = true;
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("table.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(tableViewScene);
+        window.setTitle("Main store");
+        window.show();
+        app_Logic.filterOnAction = false;
     }
 
     @Override
