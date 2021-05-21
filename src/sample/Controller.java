@@ -64,8 +64,10 @@ public class Controller implements Initializable {
             ObservableList<Products> selectedItems = table_info.getSelectionModel().getSelectedItems();
             int i = selectedItems.size() - 1;
             while (i >= 0) {
-                app_Logic.DB.removeProduct(selectedItems.get(i).getExpiry_date(), selectedItems.get(i).getProduct_name());
-                productsList.remove(selectedItems.get(i));
+                if (app_Logic.current_user_id == app_Logic.DB.get_user_id(selectedItems.get(i))){
+                    app_Logic.DB.removeProduct(selectedItems.get(i).getExpiry_date(), selectedItems.get(i).getProduct_name());
+                    productsList.remove(selectedItems.get(i));
+                };
                 i--;
             }
         }catch(Exception e){

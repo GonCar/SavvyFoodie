@@ -231,6 +231,20 @@ public class DB_connection {
         }
     }
 
+    public int get_user_id(Products selected){
+        try {
+            ps = connection.prepareStatement("select user_id from users where email=?");
+            ps.setString(1,selected.getOwner_contact());
+            resultSet = ps.executeQuery();
+            resultSet.next();
+            int x= resultSet.getInt(1);
+            return x;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     // *********************** To be added to the Gui functionalities ********************
     public void change_price(int product_id, int new_price){
         try{
