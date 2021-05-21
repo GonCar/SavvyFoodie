@@ -2,6 +2,7 @@ package sample;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class DB_connection {
@@ -9,7 +10,6 @@ public class DB_connection {
     private static PreparedStatement ps;
     private Connection connection;
     final static String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=root";
-
 
     public Connection connect() {
         try{
@@ -148,10 +148,9 @@ public class DB_connection {
         }
     }
 
-    // *********************** To be added to the Gui functionalities ********************
-
     public void filter_by_price(int min_price, int max_price){
         try{
+            app_Logic.filteredProducts = new HashSet<>();
             ps = connection.prepareStatement("SELECT * FROM food_products WHERE price >= ? AND price <= ?");
             ps.setInt(1, min_price);
             ps.setInt(2, max_price);
@@ -175,6 +174,64 @@ public class DB_connection {
         }
     }
 
+    public void filter_by_category(String category) {
+        try{
+            app_Logic.filteredProducts = new HashSet<>();
+            ps = connection.prepareStatement("SELECT" +
+                    " product_name, product_category," +
+                    " product_weight, price, expiry_date, Users_user_id" +
+                    " FROM food_products WHERE product_category = ?");
+            ps.setString(1, category);
+            resultSet = ps.executeQuery();
+            while (resultSet.next()){
+                PreparedStatement get_contact = connection.prepareStatement("Select email from users where user_id = ?");
+                get_contact.setInt(1, resultSet.getInt("Users_user_id"));
+                ResultSet resultSet2 = get_contact.executeQuery();
+                resultSet2.next();
+                app_Logic.filteredProducts.add(new Products(
+                        resultSet.getString("product_name"),
+                        resultSet.getString("product_category"),
+                        resultSet.getInt("product_weight"),
+                        resultSet.getInt("price"),
+                        resultSet.getLong("expiry_date"),
+                        resultSet2.getString(1)));
+            }
+        } catch (SQLException e) {
+            System.out.println("Query failed to execute");
+            e.printStackTrace();
+        }
+    }
+    public void filter_by_city(String city) {
+        try{
+            app_Logic.filteredProducts = new HashSet<>();
+            ps = connection.prepareStatement("SELECT product_name, product_category," +
+                    " product_weight, price, expiry_date, Users_user_id FROM food_products" +
+                    " INNER JOIN users ON  food_products.Users_user_id = users.user_id" +
+                    " WHERE users.city = ?");
+            ps.setString(1, city);
+            resultSet = ps.executeQuery();
+            while (resultSet.next()){
+                PreparedStatement get_contact = connection.prepareStatement("Select email from users where user_id = ?");
+                get_contact.setInt(1, resultSet.getInt("Users_user_id"));
+                ResultSet resultSet2 = get_contact.executeQuery();
+                resultSet2.next();
+                Products x = new Products(
+                        resultSet.getString("product_name"),
+                        resultSet.getString("product_category"),
+                        resultSet.getInt("product_weight"),
+                        resultSet.getInt("price"),
+                        resultSet.getLong("expiry_date"),
+                        resultSet2.getString(1));
+                System.out.println("working with city filter method");
+                app_Logic.filteredProducts.add(x);
+            }
+        } catch (SQLException e) {
+            System.out.println("Query failed to execute");
+            e.printStackTrace();
+        }
+    }
+
+    // *********************** To be added to the Gui functionalities ********************
     public void change_price(int product_id, int new_price){
         try{
             ps = connection.prepareStatement("SELECT * FROM food_products WHERE product_id=?");
@@ -222,55 +279,4 @@ public class DB_connection {
             System.out.println("Error on executing statement!");
         }
     }
-
-    public void filter_by_category(String category) {
-        try{
-            ps = connection.prepareStatement("SELECT * FROM food_products WHERE product_category = ?");
-            ps.setString(1, category);
-            resultSet = ps.executeQuery();
-            while (resultSet.next()){
-                PreparedStatement get_contact = connection.prepareStatement("Select email from users where user_id = ?");
-                get_contact.setInt(1, resultSet.getInt("Users_user_id"));
-                ResultSet resultSet2 = get_contact.executeQuery();
-                resultSet2.next();
-                app_Logic.filteredProducts.add(new Products(
-                        resultSet.getString("product_name"),
-                        resultSet.getString("product_category"),
-                        resultSet.getInt("product_weight"),
-                        resultSet.getInt("price"),
-                        resultSet.getLong("expiry_date"),
-                        resultSet2.getString(1)));
-            }
-        } catch (SQLException e) {
-            System.out.println("Query failed to execute");
-            e.printStackTrace();
-        }
-    }
-    public void filter_by_city(String city) {
-        try{
-            ps = connection.prepareStatement("SELECT user_name, product_name, " +
-                    "product_category, price, product_weight , city FROM food_products" +
-                    " INNER JOIN users ON  food_products.Users_user_id = users.user_id" +
-                    " WHERE users.city = ?");
-            ps.setString(1, city);
-            resultSet = ps.executeQuery();
-            while (resultSet.next()){
-                PreparedStatement get_contact = connection.prepareStatement("Select email from users where user_id = ?");
-                get_contact.setInt(1, resultSet.getInt("Users_user_id"));
-                ResultSet resultSet2 = get_contact.executeQuery();
-                resultSet2.next();
-                app_Logic.filteredProducts.add(new Products(
-                        resultSet.getString("product_name"),
-                        resultSet.getString("product_category"),
-                        resultSet.getInt("product_weight"),
-                        resultSet.getInt("price"),
-                        resultSet.getLong("expiry_date"),
-                        resultSet2.getString(1)));
-            }
-        } catch (SQLException e) {
-            System.out.println("Query failed to execute");
-            e.printStackTrace();
-        }
-    }
-
 }

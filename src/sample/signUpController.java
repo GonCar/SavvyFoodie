@@ -32,8 +32,6 @@ public class signUpController implements Initializable {
     @FXML private Label mismatchedPasswordLabel;
     @FXML private Label userExistsLabel;
     @FXML private ComboBox<String> entityComboBox;
-    @FXML private Button registerButton;
-    @FXML private Button returnButton;
     ObservableList<String> entitiesObservableList = FXCollections.observableArrayList("Private", "Supermarket", "Store", "Restaurant");
 
     @Override
@@ -53,7 +51,6 @@ public class signUpController implements Initializable {
         String regex = "^(.+)@(.+)$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
-
         if(user.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             warningLabel.setText("Remember to fill all the fields");
         }

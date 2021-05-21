@@ -9,7 +9,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -18,11 +17,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.sql.*;
 
 public class Controller implements Initializable {
-    PreparedStatement ps;
-    ResultSet resultSet;
     @FXML protected TableView<Products> table_info;
     @FXML protected TableColumn<Products, String> col_name;
     @FXML protected TableColumn<Products, String> col_category;
@@ -30,8 +26,6 @@ public class Controller implements Initializable {
     @FXML protected TableColumn<User, String> col_Email;
     @FXML protected TableColumn<Products, Integer> col_price;
     @FXML protected TableColumn<Products, java.sql.Date> col_date;
-    @FXML private Button addProductButton;
-    @FXML private Button removeProductButton;
     ObservableList<Products> productsList = FXCollections.observableArrayList();
 
     @Override
@@ -53,7 +47,11 @@ public class Controller implements Initializable {
         try {
             productsList.clear();
             app_Logic.removeExpired();
-            productsList = FXCollections.observableArrayList(app_Logic.readyList);
+            if (app_Logic.filteredProducts != null){
+                productsList.addAll(app_Logic.filteredProducts);
+            } else {
+                productsList = FXCollections.observableArrayList(app_Logic.DB.getAllProducts());
+            }
             table_info.setItems(productsList);
         } catch (Exception exception) {
             System.out.println("Failed to refresh table");
@@ -87,13 +85,14 @@ public class Controller implements Initializable {
     }
 
     public void logOutProductButtonOnAction(ActionEvent event) throws IOException{
-        loginController x = new loginController();
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.setTitle("");
         window.show();
+        app_Logic.DB.disconnect();
+        app_Logic.current_user_id = 0;
     }
 
     public void filterProductButtonOnAction(ActionEvent event) throws IOException {
