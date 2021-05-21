@@ -1,20 +1,34 @@
-//package tests;
+package tests;
+
 //import java.util.Date;
 //import org.junit.jupiter.api.Assertions;
-//import org.junit.jupiter.api.DisplayName;
-//import org.junit.jupiter.api.Test;
-//import sample.Products;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import sample.Products;
 //
 ////import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 ////import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.formatDate;
-//import static org.junit.jupiter.api.Assertions.*;
-//
-//@DisplayName("function testing in Class Products")
-//
-//class ProductsTest {
-///*
-//    @Test
-//    void getProduct_id(){
+import static org.junit.jupiter.api.Assertions.*;
+
+@DisplayName("Group Multiple Products Assertion")
+class ProductsTest {
+    @Test
+    @DisplayName("Group multiple products Testing")
+    void Products() {
+        System.out.println("product name, category, product weight, price, expiry date passed test!");
+        Products products = new Products("Oranges", "Fruit", 500, 50, 20210601);
+        assertAll("Food Products",
+                () -> assertEquals("Oranges", products.getProduct_name()),
+                () -> assertEquals("Fruit", products.getCategory()),
+                () -> assertEquals(500, products.getProduct_weight()),
+                () -> assertEquals(50, products.getPrice()),
+                () -> assertEquals(20210601, products.getExpiry_date())
+
+        );
+    }
+}
+
+//void getProduct_id(){
 //        System.out.println("Product Name test passed");
 //        Products test = new Products("apple", "", 0, 0, 120);
 //        Assertions.assertEquals( "apple", test.getProduct_name());
