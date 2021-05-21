@@ -38,6 +38,10 @@ public class signUpController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         entityComboBox.setItems(entitiesObservableList);
         entityComboBox.getSelectionModel().selectFirst();
+        cityTextField.setTextFormatter(new TextFormatter<>(change ->
+                (change.getControlNewText().matches("[a-zA-Z]*")) ? change : null));
+        countryTextField.setTextFormatter(new TextFormatter<>(change ->
+                (change.getControlNewText().matches("[a-zA-Z]*")) ? change : null));
     }
 
     public void RegisterButton(ActionEvent event) throws IOException {

@@ -37,6 +37,12 @@ public class AddProductController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         categoryComboBox.setItems(categoryObservableList);
         categoryComboBox.getSelectionModel().selectFirst();
+        priceTextField.setTextFormatter(new TextFormatter<>(change ->
+                (change.getControlNewText().matches("([1-9][0-9]*)?")) ? change : null));
+        weightTextField.setTextFormatter(new TextFormatter<>(change ->
+                (change.getControlNewText().matches("([1-9][0-9]*)?")) ? change : null));
+        nameTextField.setTextFormatter(new TextFormatter<>(change ->
+                (change.getControlNewText().matches("[a-zA-Z]*")) ? change : null));
     }
 
     public void addProductButtonOnAction(ActionEvent event) throws IOException {
