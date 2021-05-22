@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
+import org.mockito.Mock;
 import sample.Main;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.condition.OS.WINDOWS;

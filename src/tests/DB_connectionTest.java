@@ -1,13 +1,14 @@
-//package tests;
-//
-//import org.junit.jupiter.api.Test;
-//import sample.DB_connection;
-//
-//import java.io.ByteArrayOutputStream;
-//import java.io.PrintStream;
-//import java.util.Date;
-//
-//import static org.junit.jupiter.api.Assertions.*;
+package tests;
+
+import org.junit.jupiter.api.Test;
+import sample.DB_connection;
+
+import java.sql.SQLException;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 //
 //public class DB_connectionTest {
 //
@@ -110,4 +111,47 @@
 //        assertEquals(true, result.contains("Product couldn't be deleted"));
 //        System.setOut(originalOut);
 //    }
-//}
+
+public class DB_connectionTest {
+
+    /**
+    public static void main(String[] args) {
+        String Url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=root";
+     try {
+        Class.forName("com.mysql.jdbc.Driver");
+        //    System.out.println("Trying to connect");
+            Connection con = DriverManager.getConnection(Url);
+
+            System.out.println("Connection Established Successfull and the DATABASE NAME IS:"
+                    + con.getMetaData().getDatabaseProductName());
+            Statement stmt = con.createStatement();
+            stmt.executeQuery("select * from user;");
+      } catch (Exception e) {
+            System.out.println("Unable to make connection with DB");
+            e.printStackTrace();
+      }
+
+    }
+     **/
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+
+
+    @Test
+    public void failedConnection() throws SQLException {
+
+        DB_connection connectionMock = spy(new DB_connection());
+        when(connectionMock.driverConnect()).thenThrow(new SQLException());
+
+        System.setOut(new PrintStream(outContent));
+        connectionMock.connect();
+        String result = outContent.toString();
+        assertEquals(true, result.contains("connection failed!"));
+        System.setOut(originalOut);
+    }
+}
+
+
+
+
+

@@ -13,13 +13,18 @@ public class DB_connection {
 
     public Connection connect() {
         try{
-            connection = DriverManager.getConnection(url);
+            connection = driverConnect();
             return connection;
         }
         catch (SQLException e){
             System.out.println("connection failed!");
         }
         return null;
+    }
+
+    public Connection driverConnect() throws SQLException {
+        connection = DriverManager.getConnection(url);
+        return connection;
     }
 
     public void disconnect() {
