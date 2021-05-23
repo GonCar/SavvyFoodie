@@ -38,8 +38,6 @@ public class MainTest<ExpectedSystemExit> {
 
 
 
-
-
     @Target(ElementType.METHOD)
     @Retention(RetentionPolicy.RUNTIME)
     @Test

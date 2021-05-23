@@ -3,6 +3,8 @@ package tests;
 import org.junit.jupiter.api.Test;
 import sample.DB_connection;
 import sample.Products;
+import sample.User;
+import sample.app_Logic;
 
 import java.sql.Array;
 import java.sql.Connection;
@@ -12,7 +14,7 @@ import java.io.PrintStream;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.hasItems;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class DB_connectionTest {
@@ -86,8 +88,45 @@ public class DB_connectionTest {
         assertEquals(true, result.contains("Query failed to execute"));
         System.setOut(originalOut);
     }
-}
 
+    @Test
+    void insertAndFetchProduct(){
+        DB_connection connection = new DB_connection();
+        connection.connect();
+
+        app_Logic.current_user_id = 8003;
+
+        int preSum = connection.getAllProducts().size();
+        connection.insertProduct("AppleTest", "Fruit", "5", "2021-05-23", "10");
+        List<Products> products = connection.getAllProducts();
+        Products pro = products.stream()
+                .filter(product -> product.getProduct_name().equals("AppleTest")
+                        && product.getCategory().equals("Fruit")
+                        && product.getPrice() == 5
+                        && product.getProduct_weight() == 10)
+                .findAny()
+                .orElse(null);
+
+        assertNotNull(pro);
+        assertNotEquals(products.size(), preSum);
+    }
+    @Test
+    void insertAndGetUser(){
+        DB_connection connection = new DB_connection();
+        connection.connect();
+
+        connection.insertUser("RichardTest",
+                "Private",
+                "mike123",
+                "Kristianstad",
+                "Sweden",
+                "test@gmail.com");
+        int userId = connection.getUserId("RichardTest");
+
+        boolean isGreatetThanZero = userId >= 0;
+        assertTrue(isGreatetThanZero);
+    }
+}
 
 
 
