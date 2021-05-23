@@ -8,9 +8,21 @@ public class DB_connection {
     private static ResultSet resultSet;
     private static PreparedStatement ps;
     private Connection connection;
-    final static String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=root";
+    final static String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=mySQL2021";
 
+    /*original
+    public Connection connect() {
+        try{
+            connection = driverConnect();
+            return connection;
+        }
+        catch (SQLException e){
+            System.out.println("connection failed!");
+        }
+        return null;
+    }*/
 
+    //MATTT
     public Connection connect() {
         try{
             connection = DriverManager.getConnection(url);
@@ -22,6 +34,18 @@ public class DB_connection {
         return null;
     }
 
+
+
+    public Connection driverConnect() throws SQLException {
+        connection = DriverManager.getConnection(url);
+        return connection;
+    }
+
+
+
+
+
+    // Matt
     public void disconnect() {
         try{
             if(connection != null){ connection.close();}
@@ -32,6 +56,20 @@ public class DB_connection {
             System.out.println("closing the resources failed!");
         }
     }
+
+    /*original
+    public void disconnect() {
+        try{
+            if(connection != null){ connection.close();}
+            if(ps != null){ ps.close();}
+            if(resultSet != null){ resultSet.close();}
+        }
+        catch (SQLException e){
+            System.out.println("closing the resources failed!");
+        }
+    }
+
+     */
 
     public List<Products> getAllProducts() {
         List<Products> allProducts = new ArrayList<>();
