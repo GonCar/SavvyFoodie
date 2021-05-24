@@ -1,7 +1,7 @@
 package tests;
 
-import org.junit.After;
-import org.junit.Rule;
+//import org.junit.After;
+//import org.junit.Rule;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.EnabledOnOs;
