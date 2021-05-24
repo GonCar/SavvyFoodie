@@ -7,25 +7,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="563.0" prefWidth="778.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.filterOptionsController">
+<AnchorPane prefHeight="650.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.filterOptionsController">
    <children>
-      <Button fx:id="filterProductsButton" layoutX="344.0" layoutY="480.0" mnemonicParsing="false" onAction="#filterProductsButtonOnAction" prefHeight="37.0" prefWidth="91.0" text="Filter">
+      <Button fx:id="filterProductsButton" layoutX="318.0" layoutY="480.0" mnemonicParsing="false" onAction="#filterProductsButtonOnAction" prefHeight="37.0" prefWidth="91.0" text="Filter">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Label layoutX="329.0" layoutY="46.0" prefHeight="50.0" prefWidth="121.0" text="Filter option" textFill="#000000b0">
+      <Label layoutX="254.0" layoutY="84.0" prefHeight="37.0" prefWidth="123.0" text="Filter options" textFill="#000000b0">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <Button fx:id="returnButton" layoutX="70.0" layoutY="34.0" mnemonicParsing="false" onAction="#returnButtonOnAction" prefHeight="37.0" prefWidth="91.0" text="&lt;- Return">
+      <Button fx:id="returnButton" layoutX="70.0" layoutY="34.0" mnemonicParsing="false" onAction="#returnButtonOnAction" prefHeight="37.0" prefWidth="91.0" text="&lt; Return">
          <font>
             <Font name="Arial" size="15.0" />
          </font>
       </Button>
-      <ComboBox fx:id="categoryComboBox" layoutX="348.0" layoutY="305.0" prefWidth="150.0" />
-      <Label layoutX="365.0" layoutY="125.0" prefHeight="21.0" prefWidth="50.0" text="Price" textFill="#000000e4">
+      <ComboBox fx:id="categoryComboBox" layoutX="288.0" layoutY="305.0" prefWidth="150.0" />
+      <Label layoutX="190.0" layoutY="204.0" prefHeight="21.0" prefWidth="50.0" text="Price" textFill="#000000e4">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -40,18 +40,18 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="250.0" layoutY="305.0" prefHeight="25.0" prefWidth="68.0" text="Category" textFill="#000000e8">
+      <Label layoutX="181.0" layoutY="305.0" prefHeight="25.0" prefWidth="68.0" text="Category" textFill="#000000e8">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="271.0" layoutY="361.0" prefHeight="17.0" prefWidth="61.0" text="City" textFill="#000000ce">
+      <Label layoutX="202.0" layoutY="361.0" prefHeight="17.0" prefWidth="61.0" text="City" textFill="#000000ce">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="cityField" layoutX="349.0" layoutY="359.0" />
-      <TextField fx:id="maxValue" layoutX="348.0" layoutY="179.0" />
+      <TextField fx:id="cityField" layoutX="289.0" layoutY="359.0" />
+      <TextField fx:id="maxValue" layoutX="349.0" layoutY="179.0" />
       <TextField fx:id="minValue" layoutX="348.0" layoutY="226.0" />
    </children>
 </AnchorPane>

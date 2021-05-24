@@ -18,8 +18,8 @@ import java.sql.*;
 import java.util.ResourceBundle;
 import java.io.IOException;
 
-
 public class loginController implements Initializable {
+    public AnchorPane anchorPane;
     PreparedStatement ps;
     ResultSet resultSet;
     @FXML private TextField usernameTextField;
@@ -38,6 +38,7 @@ public class loginController implements Initializable {
     public void signUpButtonOnAction(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("signUp.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
+        tableViewScene.getStylesheets().add("sample/style.css");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.setTitle("Sign Up");
@@ -46,10 +47,11 @@ public class loginController implements Initializable {
 
     public void loginButtonOnAction(ActionEvent event) throws IOException {
         if(!usernameTextField.getText().isBlank() && !passwordTextField.getText().isBlank()) {
-            if(checkLogin()) {
+            if(checkLogin(usernameTextField.getText(), passwordTextField.getText())) {
                 app_Logic.current_user_id = app_Logic.DB.getUserId(usernameTextField.getText());
                 Parent tableViewParent = FXMLLoader.load(getClass().getResource("table.fxml"));
                 Scene tableViewScene = new Scene(tableViewParent);
+                tableViewScene.getStylesheets().add("sample/style.css");
                 Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
                 window.setScene(tableViewScene);
                 window.setTitle("Main store");
@@ -60,10 +62,12 @@ public class loginController implements Initializable {
         }
     }
 
-    public boolean checkLogin() {
+    public boolean checkLogin(String username, String password) {
         boolean userExists = false;
         try {
-            ps = app_Logic.connection.prepareStatement( "SELECT count(*) FROM users WHERE user_name = '"+ usernameTextField.getText() +"' AND password = '"+ passwordTextField.getText() +"'");
+            ps = app_Logic.connection.prepareStatement( "SELECT count(*) FROM users WHERE user_name = ? AND password = ?");
+            ps.setString(1, username);
+            ps.setString(2, password);
             resultSet = ps.executeQuery();
             while(resultSet.next()) {
                 if(resultSet.getInt(1) == 1) {
@@ -74,7 +78,7 @@ public class loginController implements Initializable {
                 }
             }
         }catch (SQLException exception) {
-            System.out.println("Query failed to execute");
+            System.out.println("Query failed to execute :( ");
             exception.printStackTrace();
         }
         return userExists;

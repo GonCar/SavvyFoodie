@@ -37,6 +37,7 @@ public class Controller implements Initializable {
     public void addProductButtonOnAction(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("addProduct.fxml"));
         Scene scene = new Scene(parent);
+        scene.getStylesheets().add("sample/style.css");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.setTitle("Add Product");
@@ -89,17 +90,19 @@ public class Controller implements Initializable {
     public void logOutProductButtonOnAction(ActionEvent event) throws IOException{
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
+        tableViewScene.getStylesheets().add("sample/style.css");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.setTitle("");
         window.show();
-        app_Logic.DB.disconnect();
+//        app_Logic.DB.disconnect();
         app_Logic.current_user_id = 0;
     }
 
     public void filterProductButtonOnAction(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("filterOptions.fxml"));
         Scene scene = new Scene(parent);
+        scene.getStylesheets().add("sample/style.css");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.setTitle("Filter");

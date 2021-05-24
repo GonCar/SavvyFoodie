@@ -31,6 +31,7 @@ public class filterOptionsController implements Initializable {
     public void returnButtonOnAction(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("table.fxml"));
         Scene scene = new Scene(parent);
+        scene.getStylesheets().add("sample/style.css");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.setTitle("Main store");
@@ -58,6 +59,7 @@ public class filterOptionsController implements Initializable {
         }
         Parent parent = FXMLLoader.load(getClass().getResource("table.fxml"));
         Scene scene = new Scene(parent);
+        scene.getStylesheets().add("sample/style.css");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.setTitle("Main store");

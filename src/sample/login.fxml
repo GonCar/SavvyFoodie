@@ -7,17 +7,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.loginController">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.loginController">
    <children>
       <TextField fx:id="usernameTextField" layoutX="201.0" layoutY="142.0" promptText="Username" />
-      <Button fx:id="loginButton" layoutX="201.0" layoutY="261.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="27.0" prefWidth="161.0" text="Login" />
+      <Button fx:id="loginButton" layoutX="201.0" layoutY="256.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="27.0" prefWidth="161.0" text="Login" />
       <Button fx:id="signUpButton" layoutX="201.0" layoutY="307.0" mnemonicParsing="false" onAction="#signUpButtonOnAction" prefHeight="27.0" prefWidth="161.0" text="Sign Up" />
-      <Label contentDisplay="CENTER" layoutX="169.0" layoutY="71.0" text="Savvy Foodie">
+      <Label fx:id="savvyFoodie" contentDisplay="CENTER" layoutX="169.0" layoutY="71.0" text="Savvy Foodie">
          <font>
             <Font name="System Bold Italic" size="40.0" />
          </font>
       </Label>
-      <Label fx:id="invalidLoginLabel" layoutX="157.0" layoutY="228.0" text="Invalid username or password" textFill="#eb0505">
+      <Label fx:id="invalidLoginLabel" layoutX="160.0" layoutY="356.0" text="Invalid username or password" textFill="#eb0505">
          <font>
             <Font size="20.0" />
          </font></Label>

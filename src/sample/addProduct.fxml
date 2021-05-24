@@ -6,21 +6,27 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="423.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddProductController">
+<AnchorPane prefHeight="650.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddProductController">
    <children>
-      <TextField fx:id="nameTextField" layoutX="221.0" layoutY="44.0" promptText="write food items name" />
-      <TextField fx:id="weightTextField" layoutX="221.0" layoutY="135.0" promptText="Weight (kg)" />
-      <TextField fx:id="priceTextField" layoutX="221.0" layoutY="184.0" prefHeight="25.0" prefWidth="149.0" promptText="price" />
-      <Button fx:id="addProductButton" layoutX="257.0" layoutY="346.0" mnemonicParsing="false" onAction="#addProductButtonOnAction" text="Add Product" />
+      <TextField fx:id="nameTextField" layoutX="251.0" layoutY="144.0" promptText="write food items name" />
+      <TextField fx:id="weightTextField" layoutX="250.0" layoutY="294.0" promptText="Weight (kg)" />
+      <TextField fx:id="priceTextField" layoutX="250.0" layoutY="351.0" prefHeight="25.0" prefWidth="149.0" promptText="price" />
+      <Button fx:id="addProductButton" layoutX="283.0" layoutY="511.0" mnemonicParsing="false" onAction="#addProductButtonOnAction" text="Add Product" />
       <Label fx:id="warningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="225.0" layoutY="14.0" />
-      <Button fx:id="returnButton" layoutX="257.0" layoutY="382.0" mnemonicParsing="false" onAction="#returnButtonOnAction" prefHeight="27.0" prefWidth="86.0" text="Return" />
-      <ComboBox fx:id="categoryComboBox" layoutX="221.0" layoutY="94.0" prefWidth="150.0" />
-      <Label layoutX="104.0" layoutY="44.0" prefHeight="25.0" prefWidth="98.0" text="Product Name" />
-      <Label layoutX="116.0" layoutY="94.0" prefHeight="25.0" prefWidth="74.0" text="Catergory" />
-      <Label layoutX="116.0" layoutY="135.0" prefHeight="25.0" prefWidth="74.0" text="Weight ( kg)" />
-      <Label layoutX="135.0" layoutY="184.0" prefHeight="25.0" prefWidth="36.0" text="Price" />
-      <Label layoutX="104.0" layoutY="238.0" prefHeight="27.0" prefWidth="98.0" text="Expiration date" />
-      <DatePicker fx:id="dateTextField" layoutX="221.0" layoutY="239.0" />
+      <Button fx:id="returnButton" layoutX="49.0" layoutY="31.0" mnemonicParsing="false" onAction="#returnButtonOnAction" prefHeight="27.0" prefWidth="86.0" text="&lt; Return" />
+      <ComboBox fx:id="categoryComboBox" layoutX="250.0" layoutY="197.0" prefWidth="150.0" />
+      <Label layoutX="122.0" layoutY="144.0" prefHeight="25.0" prefWidth="98.0" text="Product Name" />
+      <Label layoutX="135.0" layoutY="197.0" prefHeight="25.0" prefWidth="74.0" text="Catergory" />
+      <Label layoutX="152.0" layoutY="294.0" prefHeight="25.0" prefWidth="74.0" text="Weight ( kg)" />
+      <Label layoutX="171.0" layoutY="351.0" prefHeight="25.0" prefWidth="36.0" text="Price" />
+      <Label layoutX="122.0" layoutY="416.0" prefHeight="27.0" prefWidth="98.0" text="Expiration date" />
+      <DatePicker fx:id="dateTextField" editable="false" layoutX="250.0" layoutY="417.0" />
+      <Label layoutX="262.0" layoutY="58.0" prefHeight="28.0" prefWidth="127.0" text="Product details">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
