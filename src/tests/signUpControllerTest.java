@@ -8,12 +8,11 @@ import sample.signUpController;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class signUpControllerTest {
 
     signUpController SUC = new signUpController();
-    //SUC = signUpController
+
 
     @Test
     @DisplayName("Not Null Test")

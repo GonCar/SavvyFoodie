@@ -1,17 +1,17 @@
-
 package tests;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import sample.Products;
-import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @DisplayName("function testing in Class Products")
 
 class ProductsTest {
-    //Products test = new Products("Apple", "Fruit", 0, 0, 2021);
+
 
 
     @Test
@@ -30,8 +30,6 @@ class ProductsTest {
         Products test = new Products("Apple", "Fruit", 0, 0, 2021, "g@g.com");
         String nullString = null;
         Assertions.assertNull(nullString);
-
-
     }
 
     @Test
@@ -53,7 +51,6 @@ class ProductsTest {
         Iterable<String> listTwo = new ArrayList<>(( Arrays.asList("Apple", "Pear", "Orange")));
 
         Assertions.assertIterableEquals(listOne, listTwo);
-
     }
 
 
@@ -77,16 +74,11 @@ class ProductsTest {
         System.out.println("Product Price: Interabel Eqaul Test passed!");
         Iterable<Integer> listOne = new ArrayList<>();
         if (listOne != null) {
-
         }
-
         Iterable<Integer> listTwo = new ArrayList<>();
         if (listTwo != null) {
-
         }
-
         Assertions.assertIterableEquals(listOne, listTwo);
-
     }
 
 
@@ -105,46 +97,12 @@ class ProductsTest {
         Assertions.assertNotSame(2021-05-30, 2021-05-12, "unpaired date error found");
     }
 
-
-
-
-
-
-/*
-   @Test
-    void is_veggieTrue(){
-       System.out.println("Boolean Veggie('true/false') test passed");
-        Products test = new Products("apple", "", true, true, 2021);
-        Assertions.assertEquals( true, test.isIs_veggie());
-    }
-
- */
-/*
-    @Test
-    void getBoolean_isGlutenFree(){
-        System.out.println("Boolean Gluten Free('true/false') test passed");
-        Products test = new Products("apple", "", true, false, 0, 120);
-        Assertions.assertEquals( false, test.isIs_gluten_free());
-    }
-
- */
-
     @Test
     void getProduct_weight(){
         System.out.println("Product Weight test passed");
         Products test = new Products("Apple", "Fruit", 99, 0, 2021, "g@g.com");
         Assertions.assertEquals(99, test.getProduct_weight());
     }
-
-    /*@Test
-    @DisplayName("Assert Fail Test Case")
-    public void assertFailTest(){
-        Assertions.fail("this test cases will fail every time");
-    }
-
-     */
-
-
 
 }
 

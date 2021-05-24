@@ -1,20 +1,13 @@
 package tests;
 
-import com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping;
-import com.mysql.cj.xdevapi.SqlStatement;
-import javafx.scene.control.TableCell;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import sample.DB_connection;
 import sample.loginController;
 
-//import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.sql.*;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class loginControllerTest {
     loginController LIC = new loginController();
@@ -58,7 +51,6 @@ class loginControllerTest {
         boolean falseBoolean = false;
         Assertions.assertFalse(falseBoolean);
 
-        //Assertions.assertFalse(trueBoolean, "if you see this, Boolean False Test failed");
     }
 
     @Test
@@ -67,7 +59,6 @@ class loginControllerTest {
         System.out.println("Assert Null Pointer Exception Test for Log-In passed!");
         Assertions.assertThrows(NullPointerException.class, ()-> LIC.checkLogin());
     }
-
 
 }
 
