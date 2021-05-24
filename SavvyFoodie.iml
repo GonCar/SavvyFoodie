@@ -87,5 +87,8 @@
     </orderEntry>
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.25" level="project" />
+    <orderEntry type="library" name="lib1" level="project" />
+    <orderEntry type="library" name="mockito-all-1.10.19" level="project" />
+    <orderEntry type="library" name="lib2" level="project" />
   </component>
 </module>

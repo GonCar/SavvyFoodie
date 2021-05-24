@@ -13,7 +13,7 @@ public class DB_connection {
 
     public Connection connect() {
         try{
-            connection = DriverManager.getConnection(url);
+            connection = driverConnect();
             return connection;
         }
         catch (SQLException e){
@@ -22,9 +22,21 @@ public class DB_connection {
         return null;
     }
 
+    public Connection driverConnect() throws SQLException {
+        connection = DriverManager.getConnection(url);
+        return connection;
+    }
+
+    public Connection getConnection() throws SQLException{
+        return this.connection;
+    }
+    public void setConnection(Connection connection){
+        this.connection = connection;
+    }
+
     public void disconnect() {
         try{
-            if(connection != null){ connection.close();}
+            if(connection != null){ this.getConnection().close();}
             if(ps != null){ ps.close();}
             if(resultSet != null){ resultSet.close();}
         }
@@ -151,7 +163,7 @@ public class DB_connection {
     public void filter_by_price(int min_price, int max_price){
         try{
             app_Logic.filteredProducts = new HashSet<>();
-            ps = connection.prepareStatement("SELECT * FROM food_products WHERE price >= ? AND price <= ?");
+            ps = this.getConnection().prepareStatement("SELECT * FROM food_products WHERE price >= ? AND price <= ?");
             ps.setInt(1, min_price);
             ps.setInt(2, max_price);
             resultSet = ps.executeQuery();
@@ -177,7 +189,7 @@ public class DB_connection {
     public void filter_by_category(String category) {
         try{
             app_Logic.filteredProducts = new HashSet<>();
-            ps = connection.prepareStatement("SELECT" +
+            ps = this.getConnection().prepareStatement("SELECT" +
                     " product_name, product_category," +
                     " product_weight, price, expiry_date, Users_user_id" +
                     " FROM food_products WHERE product_category = ?");
@@ -204,7 +216,7 @@ public class DB_connection {
     public void filter_by_city(String city) {
         try{
             app_Logic.filteredProducts = new HashSet<>();
-            ps = connection.prepareStatement("SELECT product_name, product_category," +
+            ps = this.getConnection().prepareStatement("SELECT product_name, product_category," +
                     " product_weight, price, expiry_date, Users_user_id FROM food_products" +
                     " INNER JOIN users ON  food_products.Users_user_id = users.user_id" +
                     " WHERE users.city = ?");
@@ -270,6 +282,7 @@ public class DB_connection {
             System.out.println("Error on executing statement!");
         }
     }
+
     public void change_user_name(int user_id, String new_user_name){
         try{
             ps = connection.prepareStatement("SELECT * FROM users WHERE user_id=?");

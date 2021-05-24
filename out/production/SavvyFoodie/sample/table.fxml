@@ -5,17 +5,21 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="455.0" prefWidth="567.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane fx:id="removeButton" onDragDetected="#addProductButtonOnAction" prefHeight="535.0" prefWidth="727.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <TableView fx:id="table_info" layoutY="52.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="567.0">
+      <TableView fx:id="table_info" layoutY="53.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="727.0">
         <columns>
-          <TableColumn fx:id="col_name" prefWidth="94.0" text="name" />
-          <TableColumn fx:id="col_category" prefWidth="94.0" text="category" />
-            <TableColumn fx:id="col_weight" prefWidth="60.0" text="weight" />
-            <TableColumn fx:id="col_price" prefWidth="68.0" text="price (per kg)" />
-            <TableColumn fx:id="col_date" prefWidth="113.0" text="expiry date" />
+          <TableColumn fx:id="col_name" prefWidth="158.0" text="Name" />
+          <TableColumn fx:id="col_category" prefWidth="81.0" text="Category" />
+          <TableColumn fx:id="col_weight" prefWidth="77.0" text="Weight" />
+          <TableColumn fx:id="col_price" prefWidth="109.0" text="Price (per kg)" />
+          <TableColumn fx:id="col_date" prefWidth="118.0" text="Expiry date" />
+          <TableColumn fx:id="col_Email" prefWidth="183.0" text="Contact" />
         </columns>
       </TableView>
-      <Button fx:id="addProductButton" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#addProductButtonOnAction" text="Add Product" />
+      <Button fx:id="addProductButton" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#addProductButtonOnAction" prefHeight="25.0" prefWidth="126.0" text="Add Product" />
+      <Button fx:id="removeProductButton" layoutX="195.0" layoutY="20.0" mnemonicParsing="false" onAction="#removeProductButtonOnAction" prefHeight="25.0" prefWidth="126.0" text="Remove Product" />
+      <Button fx:id="logOutButton" layoutX="570.0" layoutY="20.0" mnemonicParsing="false" onAction="#logOutProductButtonOnAction" prefHeight="25.0" prefWidth="126.0" text="Log Out" />
+       <Button fx:id="filterButton" layoutX="379.0" layoutY="20.0" mnemonicParsing="false" onAction="#filterProductButtonOnAction" prefHeight="25.0" prefWidth="126.0" text="Filter" />
    </children>
 </AnchorPane>
