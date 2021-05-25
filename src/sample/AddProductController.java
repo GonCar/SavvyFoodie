@@ -48,26 +48,28 @@ public class AddProductController implements Initializable {
     public void addProductButtonOnAction(ActionEvent event) throws IOException {
         String pattern = "yyyy-MM-dd";
         DateTimeFormatter date_input = DateTimeFormatter.ofPattern(pattern);
-        date = date_input.format(dateTextField.getValue());
         name = nameTextField.getText();
         category = (String) categoryComboBox.getValue();
         price = priceTextField.getText();
 
         weight = weightTextField.getText();
-        if(name.isEmpty() || category.isEmpty() || price.isEmpty()) {
+        if(name.isEmpty() || category.isEmpty() || price.isEmpty() || dateTextField.getValue() == null) {
             warningLabel.setText("Please fill the required fields");
         }else {
+            date = date_input.format(dateTextField.getValue());
             app_Logic.DB.insertProduct(name, category, price, date, weight);
-            warningLabel.setText("  Product added :)");
+            returnButtonOnAction(event);
         }
     }
 
     public void returnButtonOnAction(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("table.fxml"));
         Scene scene = new Scene(parent);
+        scene.getStylesheets().add("sample/style.css");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.setTitle("Main store");
         window.show();
+        System.out.println(dateTextField.getValue());
     }
 }

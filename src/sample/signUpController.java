@@ -55,6 +55,11 @@ public class signUpController implements Initializable {
         String regex = "^(.+)@(.+)$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
+        warningLabel.setText("");
+        invalidEmailLabel.setText("");
+        mismatchedPasswordLabel.setText("");
+        userExistsLabel.setText("");
+
         if(user.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             warningLabel.setText("Remember to fill all the fields");
         }
@@ -70,12 +75,7 @@ public class signUpController implements Initializable {
         }
         if(!user.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty() && matcher.matches() && password.equals(confirmPassword) && !checkUserExists()) {
             app_Logic.DB.insertUser(user, entity, password, city, country, email);
-            Parent parent = FXMLLoader.load(getClass().getResource("login.fxml"));
-            Scene scene = new Scene(parent);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.setScene(scene);
-            window.setTitle("Login");
-            window.show();
+            returnButtonOnAction(event);
         }
     }
 
@@ -101,6 +101,7 @@ public class signUpController implements Initializable {
     public void returnButtonOnAction(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
+        tableViewScene.getStylesheets().add("sample/style.css");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.setTitle("Login");

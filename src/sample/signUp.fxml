@@ -35,9 +35,9 @@
             <Font name="System Italic" size="20.0" />
          </font>
       </Text>
-      <Button fx:id="registerButton" layoutX="299.0" layoutY="460.0" mnemonicParsing="false" onAction="#RegisterButton" prefHeight="27.0" prefWidth="154.0" text="Register" />
-      <Button fx:id="returnButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#returnButtonOnAction" prefHeight="27.0" prefWidth="73.0" text="&lt;-  Return" />
-      <Label fx:id="warningLabel" layoutX="206.0" layoutY="417.0" textFill="RED">
+      <Button fx:id="registerButton" layoutX="293.0" layoutY="484.0" mnemonicParsing="false" onAction="#RegisterButton" prefHeight="27.0" prefWidth="154.0" text="Register" />
+      <Button fx:id="returnButton" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#returnButtonOnAction" prefHeight="38.0" prefWidth="119.0" text="&lt; Return" />
+      <Label fx:id="warningLabel" layoutX="243.0" layoutY="532.0" prefHeight="38.0" prefWidth="255.0" textFill="RED">
          <font>
             <Font size="18.0" />
          </font>
@@ -48,17 +48,17 @@
          </font>
       </Text>
       <TextField fx:id="emailTextField" layoutX="289.0" layoutY="296.0" />
-      <Label fx:id="invalidEmailLabel" layoutX="398.0" layoutY="218.0" textFill="RED">
+      <Label fx:id="invalidEmailLabel" layoutX="471.0" layoutY="294.0" prefHeight="30.0" prefWidth="161.0" textFill="RED">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="mismatchedPasswordLabel" layoutX="391.0" layoutY="293.0" textFill="RED">
+      <Label fx:id="mismatchedPasswordLabel" layoutX="257.0" layoutY="440.0" prefHeight="38.0" prefWidth="213.0" textFill="RED">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="userExistsLabel" layoutX="222.0" layoutY="416.0" textFill="RED">
+      <Label fx:id="userExistsLabel" layoutX="209.0" layoutY="21.0" prefHeight="30.0" prefWidth="310.0" textFill="RED">
          <font>
             <Font size="20.0" />
          </font>
