@@ -1,0 +1,116 @@
+.root{
+    -fx-background: #B5A7B6;
+    -fx-alignment:center;
+    -fx-background-radius: 100;
+    -fx-text-alignment: center;
+    -fx-effect: dropshadow( gaussian, #dbcccc, 8, 0.0, 2, 2);}
+#savvyFoodie.label {
+-fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+.button {
+    -fx-background-color: #6b6363;
+    -fx-font-weight: bold;
+    -fx-font-size:11pt;
+    -fx-effect: dropshadow( gaussian, #dbcccc, 8, 0.0, 1, 1);
+    -fx-text-fill: white;
+    -fx-transition: opacity 0.5s ease-in-out;
+}
+TextField , PasswordField{
+    -fx-background-color: #f2efeb;
+    -fx-font-weight: bold;
+    }
+TextField:hover , PasswordField:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+    -fx-background-color: white;
+}
+.button:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+    -fx-background-color: #857b7b;
+-fx-text-fill: white;
+
+}
+
+/*
+
+For some reason the #combobox and #datepicker could not be selected
+
+.ComboBox:selected{
+    -fx-font-weight: bold;
+    -fx-background-color: #f2efeb;
+}
+.ComboBox:hover{
+    -fx-background-color: white;
+}
+.DatePicker{
+    -fx-font-weight: bold;
+    -fx-background-color: #f2efeb;
+}
+.DatePicker:hover{
+    -fx-background-color: white;
+}
+
+*/
+
+.table-view{
+   -fx-background-color: transparent;
+    -fx-text-alignment: center;
+     -fx-effect: dropshadow( gaussian, #B5A7B6, 8, 0.0, 1, 1);
+}
+
+.table-view:focused{
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(#e8e6e6 0%, #a89292 100%);
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-size:10pt;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-cell-size: 30px;
+}
+
+.table-view .table-cell{
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+
+.table-row-cell{
+    -fx-background-color: linear-gradient( #a89292 0%,#e8e6e6 5%, #e8e6e6 85%, #a89292 100% );
+    -fx-cell-size: 30px;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */
+}
+
+.table-row-cell:odd{
+    -fx-background-color: linear-gradient( #a89292 0%,#e8e6e6 5%, #e8e6e6 85%, #a89292 100% );
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #9ccaff;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}
+
+.table-view > .virtual-flow > .scroll-bar:vertical,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track-background,
+.table-view > .virtual-flow > .scroll-bar:horizontal,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
+    -fx-background-color: transparent;
+}

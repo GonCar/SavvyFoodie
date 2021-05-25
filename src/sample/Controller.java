@@ -60,6 +60,7 @@ public class Controller implements Initializable {
         }
     }
 
+    /** remove the selected food items */
     public void removeProductButtonOnAction(){
         try {
             ObservableList<Products> selectedItems = table_info.getSelectionModel().getSelectedItems();
@@ -77,6 +78,7 @@ public class Controller implements Initializable {
         }
     }
 
+    /** Load the items to the tableview */
     private void loadData() {
         col_name.setCellValueFactory(new PropertyValueFactory<>("product_name"));
         col_category.setCellValueFactory(new PropertyValueFactory<>("category"));
@@ -87,7 +89,8 @@ public class Controller implements Initializable {
         refreshTable();
     }
 
-    public void logOutProductButtonOnAction(ActionEvent event) throws IOException{
+/** Log out the current logged in user*/
+   public void logOutProductButtonOnAction(ActionEvent event) throws IOException{
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         tableViewScene.getStylesheets().add("sample/style.css");
@@ -98,6 +101,8 @@ public class Controller implements Initializable {
 //        app_Logic.DB.disconnect();
         app_Logic.current_user_id = 0;
     }
+
+
 
     public void filterProductButtonOnAction(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("filterOptions.fxml"));
