@@ -35,27 +35,6 @@ TextField:hover , PasswordField:hover{
 
 }
 
-/*
-
-For some reason the #combobox and #datepicker could not be selected
-
-.ComboBox:selected{
-    -fx-font-weight: bold;
-    -fx-background-color: #f2efeb;
-}
-.ComboBox:hover{
-    -fx-background-color: white;
-}
-.DatePicker{
-    -fx-font-weight: bold;
-    -fx-background-color: #f2efeb;
-}
-.DatePicker:hover{
-    -fx-background-color: white;
-}
-
-*/
-
 .table-view{
    -fx-background-color: transparent;
     -fx-text-alignment: center;
@@ -114,3 +93,25 @@ For some reason the #combobox and #datepicker could not be selected
 .table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
     -fx-background-color: transparent;
 }
+
+
+/*
+
+For some reason the #combobox and #datepicker could not be selected
+
+.ComboBox:selected{
+    -fx-font-weight: bold;
+    -fx-background-color: #f2efeb;
+}
+.ComboBox:hover{
+    -fx-background-color: white;
+}
+.DatePicker{
+    -fx-font-weight: bold;
+    -fx-background-color: #f2efeb;
+}
+.DatePicker:hover{
+    -fx-background-color: white;
+}
+
+*/

@@ -44,6 +44,7 @@ public class signUpController implements Initializable {
                 (change.getControlNewText().matches("[a-zA-Z]*")) ? change : null));
     }
 
+    /**When the user fills every thing and clicks to signup*/
     public void RegisterButton(ActionEvent event) throws IOException {
         String user = userTextField.getText();
         String email = emailTextField.getText();
@@ -59,7 +60,6 @@ public class signUpController implements Initializable {
         invalidEmailLabel.setText("");
         mismatchedPasswordLabel.setText("");
         userExistsLabel.setText("");
-
         if(user.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             warningLabel.setText("Remember to fill all the fields");
         }
@@ -79,6 +79,7 @@ public class signUpController implements Initializable {
         }
     }
 
+    /**Check if the username already exists*/
     public boolean checkUserExists() {
         boolean userExists = false;
         try {
@@ -89,7 +90,6 @@ public class signUpController implements Initializable {
                     userExists = true;
                 }
             }
-
         }catch (SQLException exception) {
             System.out.println("Query failed to execute");
             exception.printStackTrace();
@@ -97,7 +97,7 @@ public class signUpController implements Initializable {
         return userExists;
     }
 
-
+    /**Change view to the main store*/
     public void returnButtonOnAction(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);

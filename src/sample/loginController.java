@@ -35,6 +35,7 @@ public class loginController implements Initializable {
         invalidLoginLabel.setAlignment(Pos.CENTER);
     }
 
+    /**Sign the user up, change view to signUp view*/
     public void signUpButtonOnAction(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("signUp.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -45,6 +46,7 @@ public class loginController implements Initializable {
         window.show();
     }
 
+    /**Log the user in after validating logging in*/
     public void loginButtonOnAction(ActionEvent event) throws IOException {
         if(!usernameTextField.getText().isBlank() && !passwordTextField.getText().isBlank()) {
             if(checkLogin(usernameTextField.getText(), passwordTextField.getText())) {
@@ -62,6 +64,7 @@ public class loginController implements Initializable {
         }
     }
 
+    /**Check if the users fields matches the username and password from he database*/
     public boolean checkLogin(String username, String password) {
         boolean userExists = false;
         try {

@@ -34,6 +34,7 @@ public class Controller implements Initializable {
         loadData();
     }
 
+    /**Change to the add products view*/
     public void addProductButtonOnAction(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("addProduct.fxml"));
         Scene scene = new Scene(parent);
@@ -44,6 +45,7 @@ public class Controller implements Initializable {
         window.show();
     }
 
+    /**Refresh and decide which products to view on the main store*/
     private void refreshTable() {
         try {
             productsList.clear();
@@ -60,7 +62,7 @@ public class Controller implements Initializable {
         }
     }
 
-    /** remove the selected food items */
+    /**remove the selected food items*/
     public void removeProductButtonOnAction(){
         try {
             ObservableList<Products> selectedItems = table_info.getSelectionModel().getSelectedItems();
@@ -68,8 +70,7 @@ public class Controller implements Initializable {
             while (i >= 0) {
                 if (app_Logic.current_user_id == app_Logic.DB.get_user_id(selectedItems.get(i))){
                     app_Logic.DB.removeProduct(selectedItems.get(i).getExpiry_date(), selectedItems.get(i).getProduct_name());
-                    productsList.remove(selectedItems.get(i));
-                };
+                    productsList.remove(selectedItems.get(i)); }
                 i--;
             }
         }catch(Exception e){
@@ -78,7 +79,7 @@ public class Controller implements Initializable {
         }
     }
 
-    /** Load the items to the tableview */
+    /**Load the items to the tableview*/
     private void loadData() {
         col_name.setCellValueFactory(new PropertyValueFactory<>("product_name"));
         col_category.setCellValueFactory(new PropertyValueFactory<>("category"));
@@ -89,7 +90,7 @@ public class Controller implements Initializable {
         refreshTable();
     }
 
-/** Log out the current logged in user*/
+/**Log out the current logged in user*/
    public void logOutProductButtonOnAction(ActionEvent event) throws IOException{
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -103,7 +104,7 @@ public class Controller implements Initializable {
     }
 
 
-
+    /**Change view to the filter options class*/
     public void filterProductButtonOnAction(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("filterOptions.fxml"));
         Scene scene = new Scene(parent);

@@ -45,6 +45,7 @@ public class AddProductController implements Initializable {
                 (change.getControlNewText().matches("[a-zA-Z]*")) ? change : null));
     }
 
+    /**Add the product to the database after validating inputs*/
     public void addProductButtonOnAction(ActionEvent event) throws IOException {
         String pattern = "yyyy-MM-dd";
         DateTimeFormatter date_input = DateTimeFormatter.ofPattern(pattern);
@@ -62,6 +63,7 @@ public class AddProductController implements Initializable {
         }
     }
 
+    /**Change the view to the main store*/
     public void returnButtonOnAction(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("table.fxml"));
         Scene scene = new Scene(parent);
