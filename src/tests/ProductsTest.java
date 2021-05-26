@@ -13,7 +13,7 @@ import java.util.Arrays;
 class ProductsTest {
 
 
-
+    //Product Name test passed
     @Test
     void getProduct_name(){
         System.out.println("Product Name test passed");
@@ -22,7 +22,7 @@ class ProductsTest {
     }
 
 
-
+    //Product Name: Null-Test
     @Test
     @DisplayName("Null Test")
     void checkProductNameIsNull() {
@@ -32,6 +32,7 @@ class ProductsTest {
         Assertions.assertNull(nullString);
     }
 
+    //Product Name: Not-Null-Test
     @Test
     @DisplayName("Not-Null Test")
     void checkProductNameIsNotNull() {
@@ -43,17 +44,18 @@ class ProductsTest {
 
     }
 
+    //Product Name: Iterable Equal Test
     @Test
     @DisplayName("Iterable Eqaul Test for String")
     public void assertIterableEqual(){
-        System.out.println("Product Name: Interabel Eqaul Test passed!");
+        System.out.println("Product Name: Iterabel Eqaul Test passed!");
         Iterable<String> listOne = new ArrayList<>(( Arrays.asList("Apple", "Pear", "Orange")));
         Iterable<String> listTwo = new ArrayList<>(( Arrays.asList("Apple", "Pear", "Orange")));
 
         Assertions.assertIterableEquals(listOne, listTwo);
     }
 
-
+    //Product Category assertion testing
     @Test
     void getProduct_category(){
         System.out.println("Product Category test passed");
@@ -61,6 +63,7 @@ class ProductsTest {
         Assertions.assertEquals("Fruit", test.getCategory());
     }
 
+    //Price test assertion testing
     @Test
     void getProduct_price(){
         System.out.println("Price test passed");
@@ -68,6 +71,7 @@ class ProductsTest {
         Assertions.assertEquals(99, test.getPrice());
     }
 
+    //Product Price: Interable Equal Test
     @Test
     @DisplayName("Iterable Eqaul Test for Integer")
     public void assertIterableEqualInteger(){
@@ -81,14 +85,16 @@ class ProductsTest {
         Assertions.assertIterableEquals(listOne, listTwo);
     }
 
-
+    //Expired Date assertion test
     @Test
+    @DisplayName("Expired Date assertion test")
     void getProduct_date(){
         System.out.println("Expired Date test passed");
         Products test = new Products("Apple", "Fruit", 0, 0, 2021-05-12, "g@g.com");
         Assertions.assertEquals(2021-05-12, test.getExpiry_date());
     }
 
+    //Not SAME Date test
     @Test
     @DisplayName("Not-Same Test")
     public void productDateNotSame(){
@@ -97,7 +103,9 @@ class ProductsTest {
         Assertions.assertNotSame(2021-05-30, 2021-05-12, "unpaired date error found");
     }
 
+    //Product Weight test
     @Test
+    @DisplayName("Product Weight test")
     void getProduct_weight(){
         System.out.println("Product Weight test passed");
         Products test = new Products("Apple", "Fruit", 99, 0, 2021, "g@g.com");
