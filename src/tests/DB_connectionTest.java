@@ -1,19 +1,17 @@
 package tests;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import sample.DB_connection;
 import sample.Products;
-import sample.User;
 import sample.app_Logic;
 
-import java.sql.Array;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -22,8 +20,9 @@ public class DB_connectionTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
-
+    //Try to do a failed connection test
     @Test
+    @DisplayName("Try to do a failed connection test.")
     public void failedConnection() throws SQLException {
 
         DB_connection connectionMock = spy(new DB_connection());
@@ -36,7 +35,9 @@ public class DB_connectionTest {
         System.setOut(originalOut);
     }
 
+    //Test faied disconnection
     @Test
+    @DisplayName("Test faied disconnection.")
     public void testDisconnect() throws SQLException {
 
         DB_connection connectionMock = spy(new DB_connection());
@@ -50,7 +51,9 @@ public class DB_connectionTest {
         System.setOut(originalOut);
     }
 
+    //Failing test for the feature of Filter Price
     @Test
+    @DisplayName("Failing test for the feature of Filter Price")
     void testFilterPrice() throws SQLException {
         DB_connection connectionMock = spy(new DB_connection());
         when(connectionMock.getConnection()).thenThrow(new SQLException());
@@ -63,7 +66,9 @@ public class DB_connectionTest {
         System.setOut(originalOut);
     }
 
+    //Failing test for the feature of Filter By Category
     @Test
+    @DisplayName("Failing test for the feature of Filter By Category")
     void testFilterByCategory() throws SQLException{
         DB_connection connectionMock = spy(new DB_connection());
         when(connectionMock.getConnection()).thenThrow(new SQLException());
@@ -76,7 +81,9 @@ public class DB_connectionTest {
         System.setOut(originalOut);
     }
 
+    //Failing test for the feature of Filter By City
     @Test
+    @DisplayName("Failing test for the feature of Filter By City")
     void testFilterByCity() throws SQLException {
         DB_connection connectionMock = spy(new DB_connection());
         when(connectionMock.getConnection()).thenThrow(new SQLException());
@@ -89,7 +96,9 @@ public class DB_connectionTest {
         System.setOut(originalOut);
     }
 
+    //Failing test for the feature of Insert and Show Products
     @Test
+    @DisplayName("Failing test for the feature of Insert and Show Products")
     void insertAndFetchProduct(){
         DB_connection connection = new DB_connection();
         connection.connect();
@@ -110,7 +119,10 @@ public class DB_connectionTest {
         assertNotNull(pro);
         assertNotEquals(products.size(), preSum);
     }
+
+    //Failing test for the feature of User Registration
     @Test
+    @DisplayName("Failing test for the feature of User Registration")
     void insertAndGetUser(){
         DB_connection connection = new DB_connection();
         connection.connect();
@@ -126,7 +138,13 @@ public class DB_connectionTest {
         boolean isGreatetThanZero = userId >= 0;
         assertTrue(isGreatetThanZero);
     }
+
 }
+
+
+
+
+
 
 
 

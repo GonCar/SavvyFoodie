@@ -23,17 +23,15 @@ public class MainTest<ExpectedSystemExit> {
     private static final OS MAC = OS.MAC;
 
 
-
+    //Test on Mac OS system
     @TestOnMac
     void testOnMac() {
-        // ...
 
     }
-
+    //Test not on Windows System
     @Test
     @DisabledOnOs(WINDOWS)
     void notOnWindows() {
-        // ...
     }
 
 
@@ -44,7 +42,4 @@ public class MainTest<ExpectedSystemExit> {
     @EnabledOnOs(OS.MAC)
     @interface TestOnMac {
     }
-
-
-
 }
