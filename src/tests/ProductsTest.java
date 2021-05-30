@@ -4,13 +4,18 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import sample.Products;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("function testing in Class Products")
 
 class ProductsTest {
-    //Product Name test passed
+
+
+    /** Product Name test passed */
     @Test
     void getProduct_name(){
         System.out.println("Product Name test passed");
@@ -18,7 +23,8 @@ class ProductsTest {
         Assertions.assertEquals("Apple", test.getProduct_name());
     }
 
-    //Product Name: Null-Test
+
+    /** Product Name: Null-Test */
     @Test
     @DisplayName("Null Test")
     void checkProductNameIsNull() {
@@ -28,7 +34,7 @@ class ProductsTest {
         Assertions.assertNull(nullString);
     }
 
-    //Product Name: Not-Null-Test
+    /** Product Name: Not-Null-Test */
     @Test
     @DisplayName("Not-Null Test")
     void checkProductNameIsNotNull() {
@@ -37,9 +43,10 @@ class ProductsTest {
         String nullString = null;
         String notNullSting = "Apple";
         Assertions.assertNotNull(notNullSting);
+
     }
 
-    //Product Name: Iterable Equal Test
+    /** Product Name: Iterable Equal Test */
     @Test
     @DisplayName("Iterable Eqaul Test for String")
     public void assertIterableEqual(){
@@ -50,7 +57,7 @@ class ProductsTest {
         Assertions.assertIterableEquals(listOne, listTwo);
     }
 
-    //Product Category assertion testing
+    /** Product Category assertion testing */
     @Test
     void getProduct_category(){
         System.out.println("Product Category test passed");
@@ -58,7 +65,7 @@ class ProductsTest {
         Assertions.assertEquals("Fruit", test.getCategory());
     }
 
-    //Price test assertion testing
+    /** Price test assertion testing */
     @Test
     void getProduct_price(){
         System.out.println("Price test passed");
@@ -80,7 +87,7 @@ class ProductsTest {
         Assertions.assertIterableEquals(listOne, listTwo);
     }
 
-    //Expired Date assertion test
+    /** Expired Date assertion test */
     @Test
     @DisplayName("Expired Date assertion test")
     void getProduct_date(){
@@ -89,7 +96,7 @@ class ProductsTest {
         Assertions.assertEquals(2021-05-12, test.getExpiry_date());
     }
 
-    //Not SAME Date test
+    /** Not SAME Date test */
     @Test
     @DisplayName("Not-Same Test")
     public void productDateNotSame(){
@@ -98,7 +105,7 @@ class ProductsTest {
         Assertions.assertNotSame(2021-05-30, 2021-05-12, "unpaired date error found");
     }
 
-    //Product Weight test
+    /** Product Weight test */
     @Test
     @DisplayName("Product Weight test")
     void getProduct_weight(){

@@ -10,7 +10,7 @@ import java.util.Arrays;
 class loginControllerTest {
     loginController LIC = new loginController();
 
-    //Not Null Test for Log-In
+    /** Not Null Test for Log-In */
     @Test
     @DisplayName("Not Null Test")
     void checkLogin() {
@@ -20,7 +20,7 @@ class loginControllerTest {
         Assertions.assertNotNull(notNullSting);
     }
 
-    //Iterable Equal Test for Log-In
+    /** Iterable Equal Test for Log-In */
     @Test
     @DisplayName("Iterable Equal Test")
     public void assertIterableEqual(){
@@ -30,7 +30,7 @@ class loginControllerTest {
         Assertions.assertIterableEquals(listOne, listTwo);
     }
 
-    //Boolean True Test for Log-In
+    /** Boolean True Test for Log-In */
     @Test
     @DisplayName("Assert True Test")
     public void assertTrueTest() {
@@ -40,7 +40,7 @@ class loginControllerTest {
         Assertions.assertTrue(trueBoolean);
     }
 
-    //Boolean False Test for Log-In
+    /** Boolean False Test for Log-In */
     @Test
     @DisplayName("Assert False Test")
     public void assertFalseTest(){
@@ -50,7 +50,7 @@ class loginControllerTest {
         Assertions.assertFalse(falseBoolean);
     }
 
-    //Assert Null Pointer Exception Test for Log-In
+    /** Assert Null Pointer Exception Test for Log-In */
     @Test
     @DisplayName("Assert Null Pointer Exception Test")
     public void assertExceptionTest(){

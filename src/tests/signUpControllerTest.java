@@ -13,7 +13,7 @@ class signUpControllerTest {
 
     signUpController SUC = new signUpController();
 
-    //Not Null Test
+    /** Not Null Test */
     @Test
     @DisplayName("Not Null Test")
     void checkUserExists(){
@@ -24,7 +24,7 @@ class signUpControllerTest {
 
     }
 
-    //Iterable Equal Test
+    /**Iterable Equal Test */
     @Test
     @DisplayName("Iterable Equal Test")
     public void assertIterableEqual(){
