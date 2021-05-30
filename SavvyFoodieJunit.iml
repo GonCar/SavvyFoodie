@@ -7,9 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="lib" level="project" />
-    <orderEntry type="library" exported="" name="mysql-connector-java-8.0.25" level="project" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.25" level="project" />
+    <orderEntry type="module-library">
       <library name="JUnit5.4">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter/5.4.2/junit-jupiter-5.4.2.jar!/" />
@@ -25,9 +25,9 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" exported="" name="mockito-all-1.10.19" level="project" />
-    <orderEntry type="library" exported="" name="mockito-junit-jupiter-3.9.0" level="project" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="library" name="mockito-all-1.10.19" level="project" />
+    <orderEntry type="library" name="mockito-junit-jupiter-3.9.0" level="project" />
+    <orderEntry type="module-library">
       <library name="JUnit4">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/" />
@@ -37,10 +37,11 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" exported="" name="byte-buddy-1.10.15" level="project" />
-    <orderEntry type="library" exported="" name="byte-buddy-agent-1.10.15" level="project" />
-    <orderEntry type="library" exported="" name="junit-jupiter-api-5.7.0" level="project" />
-    <orderEntry type="library" exported="" name="mockito-core-3.5.15" level="project" />
-    <orderEntry type="library" exported="" name="objenesis-3.1" level="project" />
+    <orderEntry type="library" name="byte-buddy-1.10.15" level="project" />
+    <orderEntry type="library" name="byte-buddy-agent-1.10.15" level="project" />
+    <orderEntry type="library" name="junit-jupiter-api-5.7.0" level="project" />
+    <orderEntry type="library" name="mockito-core-3.5.15" level="project" />
+    <orderEntry type="library" name="objenesis-3.1" level="project" />
+    <orderEntry type="library" name="mockito-all-2.0.2-beta" level="project" />
   </component>
 </module>

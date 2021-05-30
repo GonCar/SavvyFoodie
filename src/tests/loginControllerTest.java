@@ -12,6 +12,7 @@ import java.util.Arrays;
 class loginControllerTest {
     loginController LIC = new loginController();
 
+    //Not Null Test for Log-In
     @Test
     @DisplayName("Not Null Test")
     void checkLogin() {
@@ -22,10 +23,11 @@ class loginControllerTest {
 
     }
 
+    //Iterable Equal Test for Log-In
     @Test
-    @DisplayName("Iterable Eqaul Test")
+    @DisplayName("Iterable Equal Test")
     public void assertIterableEqual(){
-        System.out.println("Interabel Eqaul Test for Log-In passed!");
+        System.out.println("Iterable Equal Test for Log-In passed!");
         Iterable<String> listOne = new ArrayList<>(( Arrays.asList("Geng", "Meron", "Gonzalo")));
         Iterable<String> listTwo = new ArrayList<>(( Arrays.asList("Geng", "Meron", "Gonzalo")));
 
@@ -33,6 +35,7 @@ class loginControllerTest {
 
     }
 
+    //Boolean True Test for Log-In
     @Test
     @DisplayName("Assert True Test")
     public void assertTrueTest() {
@@ -43,6 +46,7 @@ class loginControllerTest {
         Assertions.assertTrue(trueBoolean);
     }
 
+    //Boolean False Test for Log-In
     @Test
     @DisplayName("Assert False Test")
     public void assertFalseTest(){
@@ -52,6 +56,7 @@ class loginControllerTest {
         Assertions.assertFalse(falseBoolean);
     }
 
+    //Assert Null Pointer Exception Test for Log-In
     @Test
     @DisplayName("Assert Null Pointer Exception Test")
     public void assertExceptionTest(){
