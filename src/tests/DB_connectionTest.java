@@ -2,9 +2,9 @@ package tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import sample.DB_connection;
-import sample.Products;
-import sample.app_Logic;
+import sample.model.DB_connection;
+import sample.model.Products;
+import sample.model.app_Logic;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

@@ -1,4 +1,4 @@
-package sample;
+package sample.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import sample.model.app_Logic;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -99,9 +100,9 @@ public class signUpController implements Initializable {
 
     /**Change view to the main store*/
     public void returnButtonOnAction(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("model/login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
-        tableViewScene.getStylesheets().add("sample/style.css");
+        tableViewScene.getStylesheets().add("sample/view/style.css");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.setTitle("Login");

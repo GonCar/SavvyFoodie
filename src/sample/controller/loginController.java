@@ -1,4 +1,4 @@
-package sample;
+package sample.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +13,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.model.app_Logic;
+
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -37,9 +39,9 @@ public class loginController implements Initializable {
 
     /**Sign the user up, change view to signUp view*/
     public void signUpButtonOnAction(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("signUp.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("model/signUp.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
-        tableViewScene.getStylesheets().add("sample/style.css");
+        tableViewScene.getStylesheets().add("sample/view/style.css");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.setTitle("Sign Up");
@@ -51,9 +53,9 @@ public class loginController implements Initializable {
         if(!usernameTextField.getText().isBlank() && !passwordTextField.getText().isBlank()) {
             if(checkLogin(usernameTextField.getText(), passwordTextField.getText())) {
                 app_Logic.current_user_id = app_Logic.DB.getUserId(usernameTextField.getText());
-                Parent tableViewParent = FXMLLoader.load(getClass().getResource("table.fxml"));
+                Parent tableViewParent = FXMLLoader.load(getClass().getResource("model/table.fxml"));
                 Scene tableViewScene = new Scene(tableViewParent);
-                tableViewScene.getStylesheets().add("sample/style.css");
+                tableViewScene.getStylesheets().add("sample/view/style.css");
                 Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
                 window.setScene(tableViewScene);
                 window.setTitle("Main store");

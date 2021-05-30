@@ -3,7 +3,7 @@ package tests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import sample.loginController;
+import sample.controller.loginController;
 
 import java.util.ArrayList;
 import java.util.Arrays;

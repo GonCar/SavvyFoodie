@@ -1,4 +1,4 @@
-package sample;
+package sample.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +14,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import sample.model.Products;
+import sample.model.User;
+import sample.model.app_Logic;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,9 +40,9 @@ public class Controller implements Initializable {
 
     /**Change to the add products view*/
     public void addProductButtonOnAction(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("addProduct.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("model/addProduct.fxml"));
         Scene scene = new Scene(parent);
-        scene.getStylesheets().add("sample/style.css");
+        scene.getStylesheets().add("sample/view/style.css");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.setTitle("Add Product");
@@ -92,9 +96,9 @@ public class Controller implements Initializable {
 
 /**Log out the current logged in user*/
    public void logOutProductButtonOnAction(ActionEvent event) throws IOException{
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("model/login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
-        tableViewScene.getStylesheets().add("sample/style.css");
+        tableViewScene.getStylesheets().add("sample/view/style.css");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.setTitle("");
@@ -106,9 +110,9 @@ public class Controller implements Initializable {
 
     /**Change view to the filter options class*/
     public void filterProductButtonOnAction(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("filterOptions.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("model/filterOptions.fxml"));
         Scene scene = new Scene(parent);
-        scene.getStylesheets().add("sample/style.css");
+        scene.getStylesheets().add("sample/view/style.css");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.setTitle("Filter");

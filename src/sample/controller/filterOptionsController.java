@@ -1,7 +1,5 @@
-package sample;
+package sample.controller;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,12 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sample.model.app_Logic;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 
 public class filterOptionsController implements Initializable {
     @FXML private ComboBox<String> categoryComboBox;
@@ -29,9 +26,9 @@ public class filterOptionsController implements Initializable {
     ObservableList<String> categoryComboBoxObservableList = FXCollections.observableArrayList("Fruits", "Vegetables");
 
     public void returnButtonOnAction(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("table.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("model/table.fxml"));
         Scene scene = new Scene(parent);
-        scene.getStylesheets().add("sample/style.css");
+        scene.getStylesheets().add("sample/view/style.css");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.setTitle("Main store");
@@ -57,9 +54,9 @@ public class filterOptionsController implements Initializable {
             if (max > min){app_Logic.DB.filter_by_price(min, max);
                 System.out.println("im doing filter by price");}
         }
-        Parent parent = FXMLLoader.load(getClass().getResource("table.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("model/table.fxml"));
         Scene scene = new Scene(parent);
-        scene.getStylesheets().add("sample/style.css");
+        scene.getStylesheets().add("sample/view/style.css");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.setTitle("Main store");

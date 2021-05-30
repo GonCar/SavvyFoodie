@@ -1,4 +1,4 @@
-package sample;
+package sample.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,9 +11,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sample.model.app_Logic;
+
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -65,9 +66,9 @@ public class AddProductController implements Initializable {
 
     /**Change the view to the main store*/
     public void returnButtonOnAction(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("table.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("model/table.fxml"));
         Scene scene = new Scene(parent);
-        scene.getStylesheets().add("sample/style.css");
+        scene.getStylesheets().add("sample/view/style.css");
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.setTitle("Main store");
