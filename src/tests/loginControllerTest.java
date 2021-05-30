@@ -4,10 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import sample.loginController;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-
 
 class loginControllerTest {
     loginController LIC = new loginController();
@@ -20,7 +18,6 @@ class loginControllerTest {
         String nullString = null;
         String notNullSting = "Geng";
         Assertions.assertNotNull(notNullSting);
-
     }
 
     //Iterable Equal Test for Log-In
@@ -30,9 +27,7 @@ class loginControllerTest {
         System.out.println("Iterable Equal Test for Log-In passed!");
         Iterable<String> listOne = new ArrayList<>(( Arrays.asList("Geng", "Meron", "Gonzalo")));
         Iterable<String> listTwo = new ArrayList<>(( Arrays.asList("Geng", "Meron", "Gonzalo")));
-
         Assertions.assertIterableEquals(listOne, listTwo);
-
     }
 
     //Boolean True Test for Log-In
@@ -42,7 +37,6 @@ class loginControllerTest {
         System.out.println("Boolean True Test for Log-In passed!");
         boolean trueBoolean = true;
         boolean falseBoolean = false;
-
         Assertions.assertTrue(trueBoolean);
     }
 
@@ -63,7 +57,6 @@ class loginControllerTest {
         System.out.println("Assert Null Pointer Exception Test for Log-In passed!");
         Assertions.assertThrows(NullPointerException.class, ()-> LIC.checkLogin(null, null));
     }
-
 }
 
 

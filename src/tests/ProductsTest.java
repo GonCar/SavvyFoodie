@@ -4,15 +4,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import sample.Products;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
 @DisplayName("function testing in Class Products")
 
 class ProductsTest {
-
-
     //Product Name test passed
     @Test
     void getProduct_name(){
@@ -20,7 +17,6 @@ class ProductsTest {
         Products test = new Products("Apple", "Fruit", 0, 0, 2021, "g@g.com");
         Assertions.assertEquals("Apple", test.getProduct_name());
     }
-
 
     //Product Name: Null-Test
     @Test
@@ -41,7 +37,6 @@ class ProductsTest {
         String nullString = null;
         String notNullSting = "Apple";
         Assertions.assertNotNull(notNullSting);
-
     }
 
     //Product Name: Iterable Equal Test

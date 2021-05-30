@@ -5,18 +5,15 @@ import org.junit.jupiter.api.Test;
 import sample.DB_connection;
 import sample.Products;
 import sample.app_Logic;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class DB_connectionTest {
-
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
@@ -24,10 +21,8 @@ public class DB_connectionTest {
     @Test
     @DisplayName("Try to do a failed connection test.")
     public void failedConnection() throws SQLException {
-
         DB_connection connectionMock = spy(new DB_connection());
         when(connectionMock.driverConnect()).thenThrow(new SQLException());
-
         System.setOut(new PrintStream(outContent));
         connectionMock.connect();
         String result = outContent.toString();
@@ -39,11 +34,9 @@ public class DB_connectionTest {
     @Test
     @DisplayName("Test faied disconnection.")
     public void testDisconnect() throws SQLException {
-
         DB_connection connectionMock = spy(new DB_connection());
         when(connectionMock.getConnection()).thenThrow(new SQLException());
         connectionMock.setConnection(mock(Connection.class));
-
         System.setOut(new PrintStream(outContent));
         connectionMock.disconnect();
         String result = outContent.toString();
@@ -88,7 +81,6 @@ public class DB_connectionTest {
         DB_connection connectionMock = spy(new DB_connection());
         when(connectionMock.getConnection()).thenThrow(new SQLException());
         connectionMock.setConnection(mock(Connection.class));
-
         System.setOut(new PrintStream(outContent));
         connectionMock.filter_by_city("Lund");
         String result = outContent.toString();
@@ -102,9 +94,7 @@ public class DB_connectionTest {
     void insertAndFetchProduct(){
         DB_connection connection = new DB_connection();
         connection.connect();
-
         app_Logic.current_user_id = 8003;
-
         int preSum = connection.getAllProducts().size();
         connection.insertProduct("AppleTest", "Fruit", "5", "2021-05-23", "10");
         List<Products> products = connection.getAllProducts();
@@ -115,7 +105,6 @@ public class DB_connectionTest {
                         && product.getProduct_weight() == 10)
                 .findAny()
                 .orElse(null);
-
         assertNotNull(pro);
         assertNotEquals(products.size(), preSum);
     }
@@ -126,7 +115,6 @@ public class DB_connectionTest {
     void insertAndGetUser(){
         DB_connection connection = new DB_connection();
         connection.connect();
-
         connection.insertUser("RichardTest",
                 "Private",
                 "mike123",
@@ -134,14 +122,10 @@ public class DB_connectionTest {
                 "Sweden",
                 "test@gmail.com");
         int userId = connection.getUserId("RichardTest");
-
         boolean isGreatetThanZero = userId >= 0;
         assertTrue(isGreatetThanZero);
     }
-
 }
-
-
 
 
 

@@ -10,7 +10,6 @@ public class DB_connection {
     private static PreparedStatement ps;
     private Connection connection;
     final static String url = "jdbc:mysql://127.0.0.1:3306/savvyfoodie?user=root&password=root";
-
     public Connection connect() {
         try{
             connection = driverConnect();
@@ -30,6 +29,7 @@ public class DB_connection {
     public Connection getConnection() throws SQLException{
         return this.connection;
     }
+
     public void setConnection(Connection connection){
         this.connection = connection;
     }
@@ -234,7 +234,6 @@ public class DB_connection {
                         resultSet.getInt("price"),
                         resultSet.getLong("expiry_date"),
                         resultSet2.getString(1));
-                System.out.println("working with city filter method");
                 app_Logic.filteredProducts.add(x);
             }
         } catch (SQLException e) {
