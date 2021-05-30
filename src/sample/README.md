@@ -25,8 +25,9 @@ To run application, the following libraries shall be added:
 To run the tests, the following libraries should be added:
 1. byte-buddy-agent-1.10.15
 2. byte-buddy-1.10.15
-3. mockito-core.3.515
-4. objenesis-3.1
+3. junit-jupiter-api-5.7.0
+4. mockito-core.3.515
+5. objenesis-3.1
 
 Usage
 ===========================
