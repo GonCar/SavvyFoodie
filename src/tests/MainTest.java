@@ -23,12 +23,13 @@ public class MainTest<ExpectedSystemExit> {
     private static final OS MAC = OS.MAC;
 
 
-    //Test on Mac OS system
+    /** Test on Mac OS system */
     @TestOnMac
     void testOnMac() {
 
     }
-    //Test not on Windows System
+
+    /** Test not on Windows System */
     @Test
     @DisabledOnOs(WINDOWS)
     void notOnWindows() {

@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Group multiple assertions")
 class UserTest {
 
-    //Group AssertEquals testing
+    /** Group AssertEquals testing */
     @Test
     @DisplayName("Group AssertEquals testing")
     void User(){

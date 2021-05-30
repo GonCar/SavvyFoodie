@@ -20,7 +20,7 @@ public class DB_connectionTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
-    //Try to do a failed connection test
+    /** Try to do a failed connection test */
     @Test
     @DisplayName("Try to do a failed connection test.")
     public void failedConnection() throws SQLException {
@@ -35,9 +35,9 @@ public class DB_connectionTest {
         System.setOut(originalOut);
     }
 
-    //Test faied disconnection
+    /** Test faied disconnection */
     @Test
-    @DisplayName("Test faied disconnection.")
+    @DisplayName("Test failed disconnection.")
     public void testDisconnect() throws SQLException {
 
         DB_connection connectionMock = spy(new DB_connection());
@@ -51,7 +51,7 @@ public class DB_connectionTest {
         System.setOut(originalOut);
     }
 
-    //Failing test for the feature of Filter Price
+    /** Failing test for the feature of Filter Price */
     @Test
     @DisplayName("Failing test for the feature of Filter Price")
     void testFilterPrice() throws SQLException {
@@ -66,7 +66,7 @@ public class DB_connectionTest {
         System.setOut(originalOut);
     }
 
-    //Failing test for the feature of Filter By Category
+    /** Failing test for the feature of Filter By Category */
     @Test
     @DisplayName("Failing test for the feature of Filter By Category")
     void testFilterByCategory() throws SQLException{
@@ -81,7 +81,7 @@ public class DB_connectionTest {
         System.setOut(originalOut);
     }
 
-    //Failing test for the feature of Filter By City
+    /** Failing test for the feature of Filter By City */
     @Test
     @DisplayName("Failing test for the feature of Filter By City")
     void testFilterByCity() throws SQLException {
@@ -96,7 +96,7 @@ public class DB_connectionTest {
         System.setOut(originalOut);
     }
 
-    //Failing test for the feature of Insert and Show Products
+    /** Failing test for the feature of Insert and Show Products */
     @Test
     @DisplayName("Failing test for the feature of Insert and Show Products")
     void insertAndFetchProduct(){
@@ -120,7 +120,7 @@ public class DB_connectionTest {
         assertNotEquals(products.size(), preSum);
     }
 
-    //Failing test for the feature of User Registration
+    /** Failing test for the feature of User Registration */
     @Test
     @DisplayName("Failing test for the feature of User Registration")
     void insertAndGetUser(){
