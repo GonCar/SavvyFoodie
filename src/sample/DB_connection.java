@@ -257,7 +257,7 @@ public class DB_connection {
         return 0;
     }
 
-    // *********************** To be added to the Gui functionalities ********************
+    // *********************** To be added to the Gui functionalities _ (Advanced Features)********************
     public void change_price(int product_id, int new_price){
         try{
             ps = connection.prepareStatement("SELECT * FROM food_products WHERE product_id=?");
@@ -270,13 +270,6 @@ public class DB_connection {
                 ps.setInt(1, new_price);
                 ps.setInt(2, product_id);
                 ps.executeUpdate();
-                System.out.println("\nProduct price changed!");
-                System.out.println("---------------------------");
-                System.out.println(
-                        "Product : " + resultSet.getString(2)+
-                         ", " + resultSet.getString(3)+
-                         "\nOld price: " + resultSet.getString(4)+
-                         "\nNew price : " + new_price);
             }
         }catch(SQLException ex){
             System.out.println("Error on executing statement!");
@@ -295,12 +288,6 @@ public class DB_connection {
                 ps.setString(1, new_user_name);
                 ps.setInt(2, user_id);
                 ps.executeUpdate();
-                System.out.println("\nUser name changed!");
-                System.out.println("---------------------------");
-                System.out.println(
-                        "User ID : " + resultSet.getString(1)+
-                                "\nOld username: " + resultSet.getString(2)+
-                                "\nNew price : " + new_user_name);
             }
         }catch(SQLException ex){
             System.out.println("Error on executing statement!");

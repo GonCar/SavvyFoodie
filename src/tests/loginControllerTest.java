@@ -50,7 +50,6 @@ class loginControllerTest {
         boolean trueBoolean = true;
         boolean falseBoolean = false;
         Assertions.assertFalse(falseBoolean);
-
     }
 
     @Test
