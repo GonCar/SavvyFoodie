@@ -13,9 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import sample.model.app_Logic;
-
-import java.net.URL;
+import sample.model.app_Logic;import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 import java.io.IOException;
@@ -53,7 +51,7 @@ public class loginController implements Initializable {
         if(!usernameTextField.getText().isBlank() && !passwordTextField.getText().isBlank()) {
             if(checkLogin(usernameTextField.getText(), passwordTextField.getText())) {
                 app_Logic.current_user_id = app_Logic.DB.getUserId(usernameTextField.getText());
-                Parent tableViewParent = FXMLLoader.load(getClass().getResource("model/table.fxml"));
+                Parent tableViewParent = FXMLLoader.load(getClass().getResource("modelasdf/table.fxml"));
                 Scene tableViewScene = new Scene(tableViewParent);
                 tableViewScene.getStylesheets().add("sample/view/style.css");
                 Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -66,7 +64,7 @@ public class loginController implements Initializable {
         }
     }
 
-    /**Check if the users fields matches the username and password from he database*/
+    /**Check if the users fields matches the username and password from the database*/
     public boolean checkLogin(String username, String password) {
         boolean userExists = false;
         try {

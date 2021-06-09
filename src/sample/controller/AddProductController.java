@@ -24,9 +24,7 @@ public class AddProductController implements Initializable {
     @FXML private TextField priceTextField;
     @FXML private DatePicker dateTextField;
     @FXML private TextField weightTextField;
-    @FXML private Button addProductButton;
     @FXML private Label warningLabel;
-    @FXML private Button returnButton;
     String name;
     String category;
     String price;

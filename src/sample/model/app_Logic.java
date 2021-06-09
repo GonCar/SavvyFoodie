@@ -8,9 +8,9 @@ import java.util.*;
 public class app_Logic {
     /**Defining some important variables*/
     public static int current_user_id;
-    static DB_connection DB = new DB_connection();
-    static Connection connection = DB.connect();
-    static Set<Products> filteredProducts;
+    public static DB_connection DB = new DB_connection();
+    public static Connection connection = DB.connect();
+    public static Set<Products> filteredProducts;
 
     /**Automatically detect and remove expired products*/
     public static void removeExpired(){
